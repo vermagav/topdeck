@@ -20,7 +20,6 @@ public class SphereControllerJump : MonoBehaviour {
 	public GameObject Particles;
 
 	bool inputPressed = false;
-	bool inputReleased = false;
 
 	public float minSpeedParticles = -1.0f;
 	public float maxSpeedParticles = -1.8f;
@@ -40,33 +39,26 @@ public class SphereControllerJump : MonoBehaviour {
 	}
 
 	void CheckSphereJump() {
-		if (!isJumping && Sphere.Controller.isGrounded)
+		if (Sphere.Controller.isGrounded)
 		{
+			isJumping = false;
 			if (inputPressed)
 			{
-				isJumping = true;
-				VerticalSpeed = JumpSpeed;
-			}
-		}
-
-		if (inputReleased && isJumping)
-		{
-			if (VerticalSpeed > 0)
-				VerticalSpeed = 0;
-			isJumping = false;
-		}
-
-		if (Sphere.Controller.isGrounded && !isJumping)
-		{
-			if (inputPressed){ // unless it jumps:
-				isJumping = true;
 				VerticalSpeed = JumpSpeed;
 			}
 			else
 			{
-				VerticalSpeed = 0; // grounded character has vSpeed = 0...
+				VerticalSpeed = 0;
 			}
 		}
+		if (isJumping)
+		{
+			if (!inputPressed)
+				VerticalSpeed = 0;
+			if (VerticalSpeed <= 0)
+				isJumping = false;
+		}
+
 		// apply gravity acceleration to vertical speed:
 		VerticalSpeed -= Gravity * Time.deltaTime;
 		Sphere.SphereMovementLocal.y = VerticalSpeed; // include vertical speed in vel
@@ -96,14 +88,12 @@ public class SphereControllerJump : MonoBehaviour {
 
 	public void InputPressed()
 	{
-		inputReleased = false;
 		inputPressed = true;
 	}
 
 	public void InputReleased()
 	{
 		inputPressed = false;
-		inputReleased = true;
 	}
 
 
