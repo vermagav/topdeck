@@ -40,17 +40,31 @@ public class SphereControllerJump : MonoBehaviour {
 	}
 
 	void CheckSphereJump() {
-		if (Sphere.Controller.isGrounded)
+		if (!isJumping && Sphere.Controller.isGrounded)
 		{
-			if (isJumping)
+			if (inputPressed)
 			{
-				isJumping = false;
+				isJumping = true;
+				VerticalSpeed = JumpSpeed;
 			}
+		}
 
-			VerticalSpeed = 0; // grounded character has vSpeed = 0...
+		if (inputReleased && isJumping)
+		{
+			if (VerticalSpeed > 0)
+				VerticalSpeed = 0;
+			isJumping = false;
+		}
+
+		if (Sphere.Controller.isGrounded && !isJumping)
+		{
 			if (inputPressed){ // unless it jumps:
 				isJumping = true;
 				VerticalSpeed = JumpSpeed;
+			}
+			else
+			{
+				VerticalSpeed = 0; // grounded character has vSpeed = 0...
 			}
 		}
 		// apply gravity acceleration to vertical speed:
@@ -75,7 +89,7 @@ public class SphereControllerJump : MonoBehaviour {
 				Particles.particleSystem.Play();
 			}
 
-			Debug.Log (VerticalSpeed);
+			//Debug.Log (VerticalSpeed);
 		}
 		VerticalSpeed = 0;
 	}
@@ -88,7 +102,6 @@ public class SphereControllerJump : MonoBehaviour {
 
 	public void InputReleased()
 	{
-		VerticalSpeed = 0;
 		inputPressed = false;
 		inputReleased = true;
 	}
