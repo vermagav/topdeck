@@ -44,6 +44,7 @@ public class LookAtObjectOfInterest : MonoBehaviour {
 			Quaternion possibleLookRotation = Quaternion.LookRotation(deltaPosition);
 			if(Quaternion.Angle(transform.parent.rotation, possibleLookRotation) <= lookAngle)
 			{
+
 				if(Mathf.Pow(deltaPosition.x, 2) + Mathf.Pow(deltaPosition.z, 2) > lookMinDistanceSquared)
 				{
 					if(currentItemOfInterest == null || 
