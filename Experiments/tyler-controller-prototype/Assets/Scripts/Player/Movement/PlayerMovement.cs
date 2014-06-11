@@ -6,16 +6,13 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 	
-	public float speed = 10.0f;
-	public float gravity = 10.0f;
-	public float maxVelocityChange = 10.0f;
-	//public bool canJump = true;
-	//public float jumpHeight = 2.0f;
+	public float maxVelocity;
+	public float maxForce;
+
 	private bool grounded = false;
 
 	void Awake () {
 		rigidbody.freezeRotation = true;
-		rigidbody.useGravity = false;
 	}
 	
 	void FixedUpdate () {
@@ -28,33 +25,18 @@ public class PlayerMovement : MonoBehaviour {
 			}
 
 			targetVelocity = transform.TransformDirection(targetVelocity);
-			targetVelocity *= speed;
+			targetVelocity *= maxVelocity;
 			
-			Vector3 velocity = rigidbody.velocity;
-			Vector3 velocityChange = (targetVelocity - velocity);
-			velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-			velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-			velocityChange.y = 0;
-			rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
-			
-			/*// Jump
-			if (canJump && Input.GetButton("Jump")) {
-				rigidbody.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-			}*/
+			Vector3 force = Vector3.ClampMagnitude((targetVelocity - rigidbody.velocity)/rigidbody.mass, maxForce)/Time.deltaTime;
+
+			rigidbody.AddForce(force);
 		}
-		
-		rigidbody.AddForce(new Vector3 (0, -gravity * rigidbody.mass, 0));
-		
+
 		grounded = false;
 	}
 	
 	void OnCollisionStay () {
 		grounded = true;    
 	}
-	
-	/*float CalculateJumpVerticalSpeed () {
-		// From the jump height and gravity we deduce the upwards speed 
-		// for the character to reach at the apex.
-		return Mathf.Sqrt(2 * jumpHeight * gravity);
-	}*/
+
 }
