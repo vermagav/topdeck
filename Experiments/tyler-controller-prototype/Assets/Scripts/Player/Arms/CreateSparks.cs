@@ -11,6 +11,7 @@ public class CreateSparks : MonoBehaviour {
 		if(Input.GetButtonDown("Fire2"))
 		{
 			Destroy(sparksInstantiation);
+
 			sparksInstantiation = (GameObject)Instantiate(Sparks, transform.position, transform.rotation);
 			sparksInstantiation.transform.parent = transform;
 		}
