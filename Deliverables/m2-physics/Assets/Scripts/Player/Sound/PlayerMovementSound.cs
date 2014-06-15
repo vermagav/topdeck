@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof(PlayerMovement))]
 public class PlayerMovementSound : MonoBehaviour {
 
 	public bool onlyGrounded;
@@ -12,17 +13,20 @@ public class PlayerMovementSound : MonoBehaviour {
 	private float lastVolume;
 	private float nextVolume;
 	private bool grounded;
+
+	PlayerMovement playerMovement;
 	
 	void Awake()
 	{
 		audioSource = GetComponent<AudioSource> ();
 		lastVolume = 0f;
+		playerMovement = GetComponent<PlayerMovement>();
 	}
 	
 	void FixedUpdate ()
 	{
 
-		Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+		Vector3 targetVelocity = playerMovement.GetTargetVelocity();
 		if(targetVelocity.magnitude > 1)
 		{
 			targetVelocity = targetVelocity / targetVelocity.magnitude;

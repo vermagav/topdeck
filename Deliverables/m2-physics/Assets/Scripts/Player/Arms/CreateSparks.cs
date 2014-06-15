@@ -6,19 +6,16 @@ public class CreateSparks : MonoBehaviour {
 	public GameObject Sparks;
 	private GameObject sparksInstantiation;
 
-	void FixedUpdate()
+	public void PlaySparks() //GetButtonDown
 	{
-		if(Input.GetButtonDown("Fire2"))
-		{
-			Destroy(sparksInstantiation);
+		Destroy(sparksInstantiation);
+		
+		sparksInstantiation = (GameObject)Instantiate(Sparks, transform.position, transform.rotation);
+		sparksInstantiation.transform.parent = transform;
+	}
 
-			sparksInstantiation = (GameObject)Instantiate(Sparks, transform.position, transform.rotation);
-			sparksInstantiation.transform.parent = transform;
-		}
-
-		if(!Input.GetButton("Fire2"))
-		{
-			Destroy(sparksInstantiation);
-		}
+	public void KillSparks()
+	{
+		Destroy(sparksInstantiation);
 	}
 }

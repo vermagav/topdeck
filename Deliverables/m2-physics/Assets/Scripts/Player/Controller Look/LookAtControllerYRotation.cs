@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class LookAtControllerYRotation : MonoBehaviour {
+
+	Vector3 point = new Vector3();
 	
 	public float rotationSpeed;
 	public float lookAngle;
@@ -9,8 +11,6 @@ public class LookAtControllerYRotation : MonoBehaviour {
 	void FixedUpdate()
 	{
 		//Debug.Log (Input.GetAxis ("LookHorizontal"));
-
-		Vector3 point = new Vector3 (Input.GetAxis ("LookHorizontal"), 0f, Input.GetAxis ("LookVertical"));
 
 		Quaternion newLookRotation;
 
@@ -26,5 +26,10 @@ public class LookAtControllerYRotation : MonoBehaviour {
 		newLookRotation = Quaternion.RotateTowards(transform.parent.rotation, newLookRotation, lookAngle);
 		
 		transform.rotation = Quaternion.Lerp (transform.rotation, newLookRotation, rotationSpeed);
+	}
+
+	public void SetPoint(Vector3 p)
+	{
+		point = p;
 	}
 }

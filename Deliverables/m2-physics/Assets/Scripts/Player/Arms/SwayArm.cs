@@ -9,17 +9,23 @@ public class SwayArm : MonoBehaviour {
 	private int upDown;
 
 	private float currentRotation;
-	
+
+	bool armSwaying = false;
+
+	CreateSparks[] sparksEmitters;
+	bool sparksFlying = false;
+
 	void Awake()
 	{
 		currentRotation = 0f;
 		upDown = -1;
+		sparksEmitters = GetComponentsInChildren<CreateSparks>();
 	}
 
 	void FixedUpdate()
 	{
 
-		if(Input.GetButton("Fire2"))
+		if(armSwaying)
 		{
 			transform.Rotate (((float)upDown) * rotationSpeed * Time.deltaTime, 0f, 0f);
 			currentRotation += ((float)upDown) * rotationSpeed * Time.deltaTime;
@@ -28,6 +34,14 @@ public class SwayArm : MonoBehaviour {
 			{
 				upDown *= -1;
 			}
+			if (!sparksFlying)
+			{
+				foreach (CreateSparks spark in sparksEmitters)
+				{
+					spark.PlaySparks();
+				}
+				sparksFlying = true;
+			}
 		}
 		else
 		{
@@ -35,8 +49,20 @@ public class SwayArm : MonoBehaviour {
 			currentRotation = Mathf.Lerp (currentRotation, 0, 0.3f);
 			deltaRotation -= currentRotation;
 			transform.Rotate ( -deltaRotation, 0f, 0f);
+			if (sparksFlying)
+			{
+				foreach (CreateSparks spark in sparksEmitters)
+				{
+					spark.KillSparks();
+				}
+				sparksFlying = false;
+			}
 		}
 
+	}
 
+	public void SetArmState(bool state)
+	{
+		armSwaying = state;
 	}
 }

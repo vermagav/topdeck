@@ -5,6 +5,8 @@ using System.Collections;
 [RequireComponent (typeof (CapsuleCollider))]
 
 public class PlayerMovement : MonoBehaviour {
+
+	Vector3 targetVelocity = new Vector3();
 	
 	public float maxVelocity;
 	public float maxForce;
@@ -18,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
 	void FixedUpdate () {
 
 		if (grounded) {
-			Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
 			if(targetVelocity.magnitude > 1)
 			{
 				targetVelocity = targetVelocity / targetVelocity.magnitude;
@@ -37,6 +39,16 @@ public class PlayerMovement : MonoBehaviour {
 	
 	void OnCollisionStay () {
 		grounded = true;    
+	}
+
+	public void SetTargetVelocity(Vector3 velocity)
+	{
+		targetVelocity = velocity;
+	}
+
+	public Vector3 GetTargetVelocity() 
+	{
+		return targetVelocity;
 	}
 
 }
