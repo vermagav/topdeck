@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent (typeof(PlayerMovement))]
 public class PlayerMovementSound : MonoBehaviour {
-
+	
 	public bool onlyGrounded;
 	public float nonGroundedVolMult;
 	public float volumeRamp;
@@ -45,6 +45,18 @@ public class PlayerMovementSound : MonoBehaviour {
 		lastVolume = audioSource.volume;
 
 		grounded = false;
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		CollisionData collisionData;
+		collisionData = collision.gameObject.GetComponent<CollisionData>();
+
+		if(collisionData == null) {
+			return;
+		}
+
+		// Play the appropriate sound at the point of contact
+		SoundController.Instance.Play (collisionData.GetCollisionSound(), this.transform.position, 1.0f);
 	}
 
 	void OnCollisionStay () {
