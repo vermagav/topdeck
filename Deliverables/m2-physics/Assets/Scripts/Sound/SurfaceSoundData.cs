@@ -87,6 +87,8 @@ public class SurfaceSoundData : System.Object {
 		}
 		lastCollisionSFXIndex = sfxIndex; //store the one we chose so we avoid repetition
 
+		//Debug.Log ("Collision (" + substance + ") at index " + sfxIndex);
+
 		return sfxCollisionBank[sfxIndex];
 
 	}
