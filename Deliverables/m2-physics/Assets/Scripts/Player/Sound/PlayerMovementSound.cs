@@ -56,7 +56,7 @@ public class PlayerMovementSound : MonoBehaviour {
 		}
 
 		// Play the appropriate sound at the point of contact
-		SoundController.Instance.Play (collisionData.GetCollisionSound(), this.transform.position, 1.0f);
+		SoundController.Instance.Play (collisionData.GetSubstance(), Surface.Cue.Collide, this.transform.position, 1.0f);
 	}
 
 	void OnCollisionStay () {
