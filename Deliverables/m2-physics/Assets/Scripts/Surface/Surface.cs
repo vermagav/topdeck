@@ -29,11 +29,11 @@ public class Surface : Object {
 		switch (substance)
 		{
 		case Substance.Solid:
-			return 1;
+			return 0.8f;
 		case Substance.Sand:
 			return 0.5f;
 		case Substance.Stone:
-			return 1.2f;
+			return 1.0f;
 		default:
 			return 1;
 		}
