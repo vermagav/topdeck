@@ -10,4 +10,9 @@ public class GameController : MonoBehaviour {
 		Screen.showCursor = false;
 		InputManager.Setup ();
 	}
+
+	void Update()
+	{
+		InputManager.Update ();
+	}
 }
