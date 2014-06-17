@@ -47,11 +47,13 @@ public class PlayerInput : MonoBehaviour {
 		if (!GamePadPresent)
 			return;
 
+		float bias = 0.5f;
+
 		//now check inputs and assign them
 
 		//Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-		playerMovement.SetTargetVelocity(new Vector3(Gamepad.LeftStick.X, 0, Gamepad.LeftStick.Y));
+		playerMovement.SetTargetVelocity(new Vector3(Gamepad.LeftStick.X * bias, 0, Gamepad.LeftStick.Y * bias));
 
 		//Vector3 point = new Vector3 (Input.GetAxis ("LookHorizontal"), 0f, Input.GetAxis ("LookVertical"));
 

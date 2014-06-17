@@ -66,6 +66,7 @@ public class CollisionData : MonoBehaviour {
 
 		// Play the appropriate sound at the point of contact
 		float colMagnitude = Mathf.Log10(collision.relativeVelocity.magnitude);
+		//colMagnitude = (colMagnitude - 0.5f) * 10; //MAGIC NUMBERS
 
 		float thresholdToPlay = 0.2f;
 
