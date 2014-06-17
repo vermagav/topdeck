@@ -72,6 +72,10 @@ public class SoundControllerEditor : Editor {
 
 			GUILayout.EndHorizontal(); //end line
 
+			EditorGUILayout.BeginHorizontal();
+			data.pitchAdjustment = EditorGUILayout.Slider("Pitch Adjust", data.pitchAdjustment, 0, 1);
+			EditorGUILayout.EndHorizontal();
+
 			//make a field for every clip in the list that can be assigned
 			for (int i = 0; i < data.sfxCollisionBank.Count; i++)
 			{
