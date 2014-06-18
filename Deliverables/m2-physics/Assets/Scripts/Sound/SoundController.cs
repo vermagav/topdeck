@@ -56,7 +56,8 @@ public class SoundController : MonoBehaviour {
 		if (loopSoundEventDict.ContainsKey(soundID))
 		{
 			//we've already created our loop, so merely update it with the current volume
-			loopSoundEventDict[soundID].volume = volume;
+			if (loopSoundEventDict[soundID] != null)
+				loopSoundEventDict[soundID].volume = volume;
 		}
 		else
 		{

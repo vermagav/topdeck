@@ -19,7 +19,7 @@ public class CollisionData : MonoBehaviour {
 
 	void Update ()
 	{
-		UpdateLoopSleepTimes(); //TODO: Have the SoundController handle this!!!!!!!
+		//UpdateLoopSleepTimes(); //TODO: Have the SoundController handle this!!!!!!!
 	}
 
 	/// <summary>
