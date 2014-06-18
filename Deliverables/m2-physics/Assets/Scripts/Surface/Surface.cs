@@ -9,7 +9,10 @@ public class Surface : Object {
 	{
 		Solid,
 		Sand,
-		Stone
+		Stone,
+		Metal,
+		Concrete,
+		SheetMetal
 	}
 
 	public enum Cue 
