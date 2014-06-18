@@ -79,7 +79,6 @@ public class CollisionData : MonoBehaviour {
 	
 	void OnCollisionStay(Collision collision) {
 		int soundPlaybackID = gameObject.GetInstanceID() * collision.gameObject.GetInstanceID();
-		Debug.Log(collision.gameObject.name);
 
 		//TODO: This could be shaped infinitely better, this is a very crude operation responding to velocity currently
 		
@@ -93,7 +92,9 @@ public class CollisionData : MonoBehaviour {
 		if (colMagnitude < thresholdToPlay) //don't play or create an object if it won't be heard
 		{
 			colMagnitude = 0;
-			Debug.Log ("Drag: " + collision.gameObject.name + " - Magnitude: " + colMagnitude);
+			
+			//Debug.Log ("Drag: " + collision.gameObject.name + " - Magnitude: " + colMagnitude);
+			
 			//this needs to be called to actually lower the volume to zero. 
 			//If the sound already exists, only the volume changes.
 			SoundController.Instance.PlayLoop(soundPlaybackID, GetSubstance(), Surface.Cue.Drag, colMagnitude, 

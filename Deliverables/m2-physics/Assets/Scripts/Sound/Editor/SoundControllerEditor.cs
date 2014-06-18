@@ -100,7 +100,7 @@ public class SoundControllerEditor : Editor {
 		GUILayout.EndHorizontal();
 
 		//this will draw the default gui controls if not commented out (useful for debugging custom editor scripts)
-		//base.OnInspectorGUI();
+		base.OnInspectorGUI();
 	}
 
 	void CreateStyles()

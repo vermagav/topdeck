@@ -44,6 +44,8 @@ public class PlayerMovementSound : MonoBehaviour {
 		audioSource.volume = Mathf.Lerp(lastVolume, nextVolume, volumeJerk);
 		lastVolume = audioSource.volume;
 
+		audioSource.volume *= SoundController.Instance.robotVolume;
+
 		grounded = false;
 	}
 

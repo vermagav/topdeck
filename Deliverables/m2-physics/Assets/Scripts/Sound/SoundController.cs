@@ -5,6 +5,9 @@ using System.Collections.Generic;
 [RequireComponent(typeof(AudioSource))]
 public class SoundController : MonoBehaviour {
 
+	[Range (0, 1)]
+	public float robotVolume = 1;
+
 	float loopSleepTime = 5.0f; //number of seconds before destroying a drag sound object that is no longer playing
 
 	public List<SurfaceSoundData> surfaceData;
