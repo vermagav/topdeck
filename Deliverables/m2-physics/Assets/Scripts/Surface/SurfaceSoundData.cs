@@ -7,6 +7,9 @@ public class SurfaceSoundData : System.Object {
 
 	public Surface.Substance substance;
 
+	[Range (0, 1)]
+	public float pitchAdjustment = 1;
+
 	public List<AudioClip> sfxCollisionBank; //array allows for sound bank behavior later
 	public AudioClip sfxDraggingSound; //we'll use only one for now
 
@@ -45,7 +48,7 @@ public class SurfaceSoundData : System.Object {
 			return GetDraggingSound();
 		}
 		Debug.LogWarning("Sound cue ID (" + cue + ") not found on " + substance + ".");
-		return new AudioClip();
+		return GetEmptyAudioClip(); //empty clip
 
 	}
 
@@ -55,7 +58,7 @@ public class SurfaceSoundData : System.Object {
 		else
 		{
 			Debug.LogWarning("No dragging sound cue(s) present for " + substance + ".");
-			return new AudioClip();
+			return GetEmptyAudioClip(); //empty clip
 		}
 	}
 
@@ -64,7 +67,7 @@ public class SurfaceSoundData : System.Object {
 		if (sfxCollisionBank == null || sfxCollisionBank.Count == 0)
 		{
 			Debug.LogWarning("No collision sound cue(s) present for " + substance + ".");
-			return new AudioClip(); //empty clip
+			return GetEmptyAudioClip(); //empty clip
 		}
 
 		//if we have only one sound in our array, return it
@@ -91,6 +94,10 @@ public class SurfaceSoundData : System.Object {
 
 		return sfxCollisionBank[sfxIndex];
 
+	}
+
+	public AudioClip GetEmptyAudioClip() {
+		return AudioClip.Create ("Empty", 100, 1, 44100, true, false);
 	}
 
 }

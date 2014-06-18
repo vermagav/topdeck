@@ -37,8 +37,9 @@ public class PlayerInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		InputManager.Update();
+		//InputManager.Update(); //this is done by GameController.cs now
 		PollGamepadInput();
+		PollKeyboardInput();
 
 	}
 
@@ -46,11 +47,13 @@ public class PlayerInput : MonoBehaviour {
 		if (!GamePadPresent)
 			return;
 
+		float bias = 0.5f;
+
 		//now check inputs and assign them
 
 		//Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-		playerMovement.SetTargetVelocity(new Vector3(Gamepad.LeftStick.X, 0, Gamepad.LeftStick.Y));
+		playerMovement.SetTargetVelocity(new Vector3(Gamepad.LeftStick.X * bias, 0, Gamepad.LeftStick.Y * bias));
 
 		//Vector3 point = new Vector3 (Input.GetAxis ("LookHorizontal"), 0f, Input.GetAxis ("LookVertical"));
 
@@ -59,5 +62,43 @@ public class PlayerInput : MonoBehaviour {
 		//Input.GetButton("Fire2")
 
 		arm.SendMessage("SetArmState", Gamepad.RightBumper.State, SendMessageOptions.DontRequireReceiver);
+	}
+
+	/// <summary>
+	/// Checks keyboard input and moves the character.
+	/// TODO: Make this work with the mouse to aim.
+	/// </summary>
+	void PollKeyboardInput() {
+		//only use keyboard input if there is no gamepad
+		if (GamePadPresent)
+			return;
+
+		//now check inputs and assign them
+		
+		//Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+		
+		float xMovement = 0;
+		float yMovement = 0;
+		
+		if (Input.GetKey(KeyCode.W))
+		{
+			xMovement = 1;
+		}
+		else if (Input.GetKey(KeyCode.S))
+		{
+			xMovement = -1;
+		}
+		
+		if (Input.GetKey(KeyCode.A))
+		{
+			yMovement = -1;
+		}
+		else if (Input.GetKey(KeyCode.D))
+		{
+			yMovement = 1;
+		}
+		
+		playerMovement.SetTargetVelocity(new Vector3(yMovement, 0, xMovement));
+		
 	}
 }
