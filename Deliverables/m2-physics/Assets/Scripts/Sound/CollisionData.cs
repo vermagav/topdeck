@@ -76,9 +76,10 @@ public class CollisionData : MonoBehaviour {
 			SoundController.Instance.PlayOneShot(GetSubstance(), Surface.Cue.Collide, colMagnitude, collision.contacts[0].point);
 		}
 	}
-	/*
+	
 	void OnCollisionStay(Collision collision) {
 		int soundPlaybackID = gameObject.GetInstanceID() * collision.gameObject.GetInstanceID();
+		Debug.Log(collision.gameObject.name);
 
 		//TODO: This could be shaped infinitely better, this is a very crude operation responding to velocity currently
 		
@@ -93,6 +94,10 @@ public class CollisionData : MonoBehaviour {
 		{
 			colMagnitude = 0;
 			Debug.Log ("Drag: " + collision.gameObject.name + " - Magnitude: " + colMagnitude);
+			//this needs to be called to actually lower the volume to zero. 
+			//If the sound already exists, only the volume changes.
+			SoundController.Instance.PlayLoop(soundPlaybackID, GetSubstance(), Surface.Cue.Drag, colMagnitude, 
+			                                  this.transform.position, collision.transform);
 		}
 		else //play our dragging sound
 		{
@@ -122,5 +127,5 @@ public class CollisionData : MonoBehaviour {
 		int soundPlaybackID = gameObject.GetInstanceID() * collision.gameObject.GetInstanceID();
 		SoundController.Instance.EndLoop(soundPlaybackID);
 	}
-	*/
+	
 }

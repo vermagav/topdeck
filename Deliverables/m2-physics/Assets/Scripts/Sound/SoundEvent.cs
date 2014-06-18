@@ -83,7 +83,7 @@ public class SoundEvent : MonoBehaviour {
 	public void Stop()
 	{
 		audio.Stop();
-		isRunning = false;
+		Cleanup();
 	}
 
 	void Cleanup()

@@ -1,0 +1,130 @@
+fileFormatVersion: 2
+guid: 91edd00239b1746349a0da41130c0f96
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: ID34
+    100004: ID44
+    100006: instance_0
+    100008: robotStartingPoint_SketchUp
+    100010: garden_Rob_ramp
+    100012: ID47
+    100014: ID57
+    100016: instance_1
+    100018: instance_2
+    100020: robotStartingPoint_SketchUp 1
+    100022: garden_Rob_ramp2_noRef
+    100024: ID46
+    100026: ID56
+    100028: ID51
+    100030: ID61
+    400000: //RootNode
+    400002: ID34
+    400004: ID44
+    400006: instance_0
+    400008: robotStartingPoint_SketchUp
+    400010: garden_Rob_ramp
+    400012: ID47
+    400014: ID57
+    400016: instance_1
+    400018: instance_2
+    400020: robotStartingPoint_SketchUp 1
+    400022: garden_Rob_ramp2_noRef
+    400024: ID46
+    400026: ID56
+    400028: ID51
+    400030: ID61
+    2300000: //RootNode
+    2300002: ID34
+    2300004: ID44
+    2300006: robotStartingPoint_SketchUp
+    2300008: garden_Rob_ramp
+    2300010: ID47
+    2300012: ID57
+    2300014: robotStartingPoint_SketchUp 1
+    2300016: garden_Rob_ramp2_noRef
+    2300018: ID46
+    2300020: ID56
+    2300022: ID51
+    2300024: ID61
+    3300000: //RootNode
+    3300002: ID34
+    3300004: ID44
+    3300006: robotStartingPoint_SketchUp
+    3300008: garden_Rob_ramp
+    3300010: ID47
+    3300012: ID57
+    3300014: robotStartingPoint_SketchUp 1
+    3300016: garden_Rob_ramp2_noRef
+    3300018: ID46
+    3300020: ID56
+    3300022: ID51
+    3300024: ID61
+    4300000: SketchUp
+    4300002: ID34
+    4300004: ID44
+    4300006: robotStartingPoint_SketchUp
+    4300008: ID47
+    4300010: ID57
+    4300012: garden_Rob_ramp
+    4300014: ID46
+    4300016: ID56
+    4300018: garden_Rob_ramp2_noRef
+    4300020: ID51
+    4300022: ID61
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
