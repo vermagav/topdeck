@@ -12,7 +12,8 @@ public class Surface : Object {
 		Stone,
 		Metal,
 		Concrete,
-		SheetMetal
+		SheetMetal,
+		Grass
 	}
 
 	public enum Cue 
@@ -32,11 +33,13 @@ public class Surface : Object {
 		switch (substance)
 		{
 		case Substance.Solid:
-			return 0.8f;
+			return 1;
 		case Substance.Sand:
 			return 0.5f;
 		case Substance.Stone:
 			return 1.0f;
+		case Substance.Grass:
+			return 0.8f;
 		default:
 			return 1;
 		}
