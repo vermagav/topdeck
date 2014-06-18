@@ -8,7 +8,9 @@ public class Surface : Object {
 	public enum Substance
 	{
 		Solid,
-		Sand
+		Sand,
+		SheetMetal,
+		Concrete
 	}
 
 	public enum Cue 
