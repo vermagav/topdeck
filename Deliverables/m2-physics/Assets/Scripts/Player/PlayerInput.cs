@@ -69,36 +69,25 @@ public class PlayerInput : MonoBehaviour {
 	/// TODO: Make this work with the mouse to aim.
 	/// </summary>
 	void PollKeyboardInput() {
-		//only use keyboard input if there is no gamepad
-		if (GamePadPresent)
-			return;
+		// Process keyboard input for movement only if GamePad is NOT present
+		if (!GamePadPresent) {
+			float xMovement = 0;
+			float yMovement = 0;
 
-		//now check inputs and assign them
-		
-		//Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-		
-		float xMovement = 0;
-		float yMovement = 0;
-		
-		if (Input.GetKey(KeyCode.W))
-		{
-			xMovement = 1;
+			if (Input.GetKey(KeyCode.W)) {
+				xMovement = 1;
+			}
+			else if (Input.GetKey(KeyCode.S)) {
+				xMovement = -1;
+			}
+			else if (Input.GetKey(KeyCode.A)) {
+				yMovement = -1;
+			}
+			else if (Input.GetKey(KeyCode.D)){
+				yMovement = 1;
+			}
+
+			playerMovement.SetTargetVelocity(new Vector3(yMovement, 0, xMovement));
 		}
-		else if (Input.GetKey(KeyCode.S))
-		{
-			xMovement = -1;
-		}
-		
-		if (Input.GetKey(KeyCode.A))
-		{
-			yMovement = -1;
-		}
-		else if (Input.GetKey(KeyCode.D))
-		{
-			yMovement = 1;
-		}
-		
-		playerMovement.SetTargetVelocity(new Vector3(yMovement, 0, xMovement));
-		
 	}
 }
