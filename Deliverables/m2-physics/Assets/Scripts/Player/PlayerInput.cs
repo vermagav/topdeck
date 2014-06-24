@@ -62,6 +62,7 @@ public class PlayerInput : MonoBehaviour {
 		//Input.GetButton("Fire2")
 
 		arm.SendMessage("SetArmState", Gamepad.RightBumper.State, SendMessageOptions.DontRequireReceiver);
+		arm.SendMessage("SetArmAxis", Gamepad.RightTrigger.Value, SendMessageOptions.DontRequireReceiver);
 	}
 
 	/// <summary>

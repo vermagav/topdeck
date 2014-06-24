@@ -42,4 +42,13 @@ public class PlayerArmSocket : MonoBehaviour {
 			arm.SendMessage("SetArmState", state);
 		}
 	}
+
+	public void SetArmAxis(float axis)
+	{
+		if (currentArm != null)
+		{
+			Component arm = (Component)currentArm;
+			arm.SendMessage("SetArmAxis", axis);
+		}
+	}
 }

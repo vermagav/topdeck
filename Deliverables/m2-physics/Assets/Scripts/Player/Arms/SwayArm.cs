@@ -10,7 +10,7 @@ public class SwayArm : MonoBehaviour, IArm {
 
 	private float currentRotation;
 
-	bool armSwaying = false;
+	bool armActivated = false;
 
 	CreateSparks[] sparksEmitters;
 	bool sparksFlying = false;
@@ -25,8 +25,9 @@ public class SwayArm : MonoBehaviour, IArm {
 	void FixedUpdate()
 	{
 
-		if(armSwaying)
+		if(armActivated)
 		{
+			/*
 			transform.Rotate (((float)upDown) * rotationSpeed * Time.deltaTime, 0f, 0f);
 			currentRotation += ((float)upDown) * rotationSpeed * Time.deltaTime;
 			
@@ -34,6 +35,7 @@ public class SwayArm : MonoBehaviour, IArm {
 			{
 				upDown *= -1;
 			}
+			*/
 			if (!sparksFlying)
 			{
 				foreach (CreateSparks spark in sparksEmitters)
@@ -63,11 +65,23 @@ public class SwayArm : MonoBehaviour, IArm {
 
 	public void SetArmState(bool state)
 	{
-		armSwaying = state;
+		armActivated = state;
 	}
 
 	public void SetArmAxis(float axis)
 	{
-		//do nothing for this arm
+		RotateArmTest(axis);
+	}
+
+	void RotateArmTest(float axis)
+	{
+		//Debug.LogError (axis);
+		transform.Rotate (((float)upDown) * axis, 0f, 0f);
+		currentRotation += ((float)upDown) * axis;
+		
+		if(Mathf.Abs(currentRotation) > rotationLimit)
+		{
+			upDown *= -1;
+		}
 	}
 }
