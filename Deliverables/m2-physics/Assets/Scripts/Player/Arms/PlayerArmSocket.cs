@@ -6,7 +6,7 @@ public class PlayerArmSocket : MonoBehaviour {
 	public GameObject acquiredBuff;
 	public GameObject connector;
 
-	public SwayArm currentArm;
+	public IArm currentArm;
 
 	void OnTriggerEnter (Collider other)
 	{
@@ -20,7 +20,7 @@ public class PlayerArmSocket : MonoBehaviour {
 				other.gameObject.transform.position = connector.transform.position;
 				other.gameObject.transform.rotation = connector.transform.rotation;
 				other.gameObject.transform.parent = connector.transform;
-				currentArm = other.gameObject.GetComponent<SwayArm>();
+				currentArm = (IArm)other.gameObject.GetComponent(typeof(IArm));
 			}
 			else //legacy code for old prefabs
 			{
@@ -28,7 +28,8 @@ public class PlayerArmSocket : MonoBehaviour {
 				GameObject newArm = (GameObject)Instantiate(acquiredBuff, connector.transform.position, connector.transform.rotation);
 				newArm.transform.parent = connector.transform;
 				//TODO: Check what kind of arm it is, we know it is a sway arm currently
-				currentArm = newArm.GetComponent<SwayArm>();
+				//(ISphereController)transform.parent.GetComponent(typeof(ISphereController));
+				currentArm = (IArm)newArm.GetComponent(typeof(IArm));
 			}
 		}
 	}
@@ -36,6 +37,9 @@ public class PlayerArmSocket : MonoBehaviour {
 	public void SetArmState(bool state)
 	{
 		if (currentArm != null)
-			currentArm.SendMessage("SetArmState", state);
+		{
+			Component arm = (Component)currentArm;
+			arm.SendMessage("SetArmState", state);
+		}
 	}
 }
