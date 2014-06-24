@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PickupArm : MonoBehaviour {
+public class PlayerArmSocket : MonoBehaviour {
 	
 	public GameObject acquiredBuff;
 	public GameObject connector;

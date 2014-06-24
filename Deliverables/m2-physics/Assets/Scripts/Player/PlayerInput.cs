@@ -7,7 +7,7 @@ public class PlayerInput : MonoBehaviour {
 
 	public PlayerMovement playerMovement;
 	public LookAtControllerYRotation lookAtControllerYRotation;
-	public PickupArm arm;
+	public PlayerArmSocket arm;
 
 	InputDevice Gamepad;
 	
