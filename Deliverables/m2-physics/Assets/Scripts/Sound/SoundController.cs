@@ -88,7 +88,12 @@ public class SoundController : MonoBehaviour {
 	{
 		if (loopSoundEventDict.ContainsKey(soundID))
 		{
-			loopSoundEventDict[soundID].Stop ();
+			if (loopSoundEventDict[soundID] != null)
+			{
+				//Temporary fix... the value should never be null!
+				loopSoundEventDict[soundID].Stop (); 
+				//Debug.LogError (soundID);
+			}
 			loopSoundEventDict.Remove(soundID);
 		}
 	}
