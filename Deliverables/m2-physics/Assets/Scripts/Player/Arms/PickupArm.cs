@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class PickupArm : MonoBehaviour {
-
-	public GameObject target;
+	
 	public GameObject acquiredBuff;
 	public GameObject connector;
 
@@ -11,7 +10,8 @@ public class PickupArm : MonoBehaviour {
 
 	void OnTriggerEnter (Collider other)
 	{
-		if(other.gameObject == target)
+		//Debug.Log ("Pickup Arm Collided");
+		if(other.gameObject.CompareTag("Arm"))
 		{
 			Destroy(other.gameObject);
 			GameObject newArm = (GameObject)Instantiate(acquiredBuff, connector.transform.position, connector.transform.rotation);

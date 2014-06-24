@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SwayArm : MonoBehaviour {
+public class SwayArm : MonoBehaviour, IArm {
 
 	public float rotationLimit;
 	public float rotationSpeed;
