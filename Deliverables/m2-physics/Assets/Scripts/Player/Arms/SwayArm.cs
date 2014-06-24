@@ -65,4 +65,9 @@ public class SwayArm : MonoBehaviour, IArm {
 	{
 		armSwaying = state;
 	}
+
+	public void SetArmAxis(float axis)
+	{
+		//do nothing for this arm
+	}
 }
