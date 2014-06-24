@@ -48,7 +48,7 @@ public class SwayArm : MonoBehaviour, IArm {
 			float deltaRotation = currentRotation;
 			currentRotation = Mathf.Lerp (currentRotation, 0, 0.3f);
 			deltaRotation -= currentRotation;
-			transform.Rotate ( -deltaRotation, 0f, 0f);
+			transform.Rotate ( -deltaRotation, 0f, 0f); //TODO: ISSUE: bug with improper rotation
 			if (sparksFlying)
 			{
 				foreach (CreateSparks spark in sparksEmitters)
