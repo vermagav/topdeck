@@ -10,6 +10,7 @@ public class InterestLevel : MonoBehaviour {
 
 	void Start() 
 	{
+		//first see if this has already been set up
 		SphereCollider[] spheres = GetComponents<SphereCollider>();
 		foreach (SphereCollider sphere in spheres)
 		{
@@ -18,7 +19,9 @@ public class InterestLevel : MonoBehaviour {
 				if (interestRangeCollider == null)
 					interestRangeCollider = sphere;
 				else
+				{
 					Debug.LogError ("Only one sphere collider attached to this object of interest should be a trigger.");
+				}
 			}
 		}
 		if (interestRangeCollider == null)
