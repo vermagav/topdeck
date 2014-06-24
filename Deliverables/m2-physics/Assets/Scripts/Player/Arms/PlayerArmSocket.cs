@@ -13,11 +13,23 @@ public class PlayerArmSocket : MonoBehaviour {
 		//Debug.Log ("Pickup Arm Collided");
 		if(other.gameObject.CompareTag("Arm"))
 		{
-			Destroy(other.gameObject);
-			GameObject newArm = (GameObject)Instantiate(acquiredBuff, connector.transform.position, connector.transform.rotation);
-			newArm.transform.parent = connector.transform;
-			//TODO: Check what kind of arm it is, we know it is a sway arm currently
-			currentArm = newArm.GetComponent<SwayArm>();
+			CollectableHighlights collectable = other.gameObject.GetComponent<CollectableHighlights>();
+			if (collectable != null)
+			{
+				collectable.RemoveHighlights();
+				other.gameObject.transform.position = connector.transform.position;
+				other.gameObject.transform.rotation = connector.transform.rotation;
+				other.gameObject.transform.parent = connector.transform;
+				currentArm = other.gameObject.GetComponent<SwayArm>();
+			}
+			else //legacy code for old prefabs
+			{
+				Destroy(other.gameObject);
+				GameObject newArm = (GameObject)Instantiate(acquiredBuff, connector.transform.position, connector.transform.rotation);
+				newArm.transform.parent = connector.transform;
+				//TODO: Check what kind of arm it is, we know it is a sway arm currently
+				currentArm = newArm.GetComponent<SwayArm>();
+			}
 		}
 	}
 
