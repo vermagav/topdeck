@@ -29,7 +29,7 @@ public class ArmGrabber : MonoBehaviour, IArm {
 	/// <param name="state">Input state (pressed/released)</param>
 	public void SetArmState(bool state)
 	{
-		hand.SetHandCanGrab(state);
+		hand.SetHandClosed(state);
 	}
 
 	/// <summary>
