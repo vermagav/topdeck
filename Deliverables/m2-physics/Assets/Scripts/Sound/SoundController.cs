@@ -61,7 +61,7 @@ public class SoundController : MonoBehaviour {
 		}
 		else
 		{
-			Debug.Log("new loop created.");
+			//Debug.Log("new loop created.");
 			//TODO: Check the type of substance and only create a new AudioSource for new types of sounds
 
 			//create entry for our looped sound so we can end it later

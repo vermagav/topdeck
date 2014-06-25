@@ -72,7 +72,7 @@ public class CollisionData : MonoBehaviour {
 
 		if (colMagnitude > thresholdToPlay)
 		{
-			Debug.Log ("Collision: " + collision.gameObject.name + " - Magnitude: " + colMagnitude);
+			//Debug.Log ("Collision: " + collision.gameObject.name + " - Magnitude: " + colMagnitude);
 			SoundController.Instance.PlayOneShot(GetSubstance(), Surface.Cue.Collide, colMagnitude, collision.contacts[0].point);
 		}
 	}
@@ -118,7 +118,7 @@ public class CollisionData : MonoBehaviour {
 			SoundController.Instance.PlayLoop(soundPlaybackID, GetSubstance(), Surface.Cue.Drag, colMagnitude, 
 			                                  this.transform.position, collision.transform);
 
-			Debug.Log ("Drag: " + collision.gameObject.name + " - Magnitude: " + colMagnitude);
+			//Debug.Log ("Drag: " + collision.gameObject.name + " - Magnitude: " + colMagnitude);
 		}
 
 	}

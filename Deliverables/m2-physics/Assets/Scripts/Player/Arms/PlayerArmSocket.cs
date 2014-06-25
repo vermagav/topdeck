@@ -47,6 +47,7 @@ public class PlayerArmSocket : MonoBehaviour {
 	{
 		if (currentArm != null)
 		{
+			//Debug.Log("setArmAxis to:" + axis);
 			Component arm = (Component)currentArm;
 			arm.SendMessage("SetArmAxis", axis);
 		}
