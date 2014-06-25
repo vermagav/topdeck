@@ -13,7 +13,8 @@ public class Surface : Object {
 		Metal,
 		Concrete,
 		SheetMetal,
-		Grass
+		Grass,
+		Wood
 	}
 
 	public enum Cue 
