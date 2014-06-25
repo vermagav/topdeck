@@ -7,6 +7,8 @@ public class DoorTrigger : MonoBehaviour {
 	public Texture buttonOn;
 
 	public AnimateDoor animateDoor;
+
+	bool triggerActive = false;
 	
 	void Update () {
 	}
@@ -20,6 +22,8 @@ public class DoorTrigger : MonoBehaviour {
 
 		// Animate the door to open
 		animateDoor.OpenDoor ();
+
+		triggerActive = true;
 	}
 
 	void OnTriggerExit (Collider other) {
@@ -29,5 +33,12 @@ public class DoorTrigger : MonoBehaviour {
 		// Animate the door to close
 		animateDoor.CloseDoor ();
 
+		triggerActive = false;
+
+	}
+
+	public bool GetTriggerState() 
+	{
+		return triggerActive;
 	}
 }
