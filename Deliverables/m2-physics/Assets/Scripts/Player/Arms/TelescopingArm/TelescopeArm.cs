@@ -2,13 +2,12 @@
 using System.Collections;
 
 public class TelescopeArm : MonoBehaviour, IArm {
-
-	public float moveSpeed = 0.3f;
-	public float maxMove = 1f;
+	
 	public float maxExtend = 5f;
 	public GameObject hand;
 	public GameObject piston;
-	
+
+	private ConfigurableJoint handJoint;
 	private Vector3 desiredPosition;
 	private Vector3 restingPosition;
 
@@ -17,6 +16,7 @@ public class TelescopeArm : MonoBehaviour, IArm {
 	{
 		desiredPosition = new Vector3(0f, 0f, 0f);
 		restingPosition = hand.transform.localPosition;
+		handJoint = hand.GetComponent<ConfigurableJoint> ();
 	}
 
 	void FixedUpdate()
@@ -28,7 +28,8 @@ public class TelescopeArm : MonoBehaviour, IArm {
 	{
 		//hand.transform.localPosition = restingPosition + desiredPosition;
 
-		hand.transform.localPosition = Vector3.Lerp (hand.transform.localPosition, restingPosition + desiredPosition, moveSpeed);
+		//hand.transform.localPosition = Vector3.Lerp (hand.transform.localPosition, restingPosition + desiredPosition, moveSpeed);
+		handJoint.targetPosition = -(desiredPosition);
 		piston.transform.localPosition = hand.transform.localPosition / 2f;
 		piston.transform.localScale = new Vector3(0.3f, hand.transform.localPosition.z / 2f, 0.3f);//hand.transform.localPosition.z / 2f);
 	}
