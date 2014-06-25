@@ -8,11 +8,9 @@ public class AnimateDoor : MonoBehaviour {
 	public void OpenDoor() {
 		// We only want the door to open
 		if (!doorTriggered) {
-			// Check for currently playing animation before queing
-			// This prevents the robot from indefinitely queing multiple animations
-			// by stepping on and off the button and using subsequent swings to escape
+			// Check for currently playing animation before playing
 			if(animation.IsPlaying("CloseDoor")) {
-				animation.PlayQueued ("OpenDoor");
+				animation.CrossFade ("OpenDoor");
 			} else {
 				animation.Play ("OpenDoor");
 			}
@@ -23,9 +21,9 @@ public class AnimateDoor : MonoBehaviour {
 	public void CloseDoor() {
 		// Same as in OpenDoor()
 		if(animation.IsPlaying("OpenDoor")) {
-			animation.PlayQueued("CloseDoor");
+			animation.CrossFade ("CloseDoor");
 		} else {
-			animation.PlayQueued ("CloseDoor");
+			animation.Play ("CloseDoor");
 		}
 		doorTriggered = false;
 	}
