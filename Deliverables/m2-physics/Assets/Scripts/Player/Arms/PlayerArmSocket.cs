@@ -24,6 +24,7 @@ public class PlayerArmSocket : MonoBehaviour {
 				SetupArm();
 
 			}
+			/*
 			else //legacy code for old prefabs
 			{
 				Destroy(other.gameObject);
@@ -33,6 +34,7 @@ public class PlayerArmSocket : MonoBehaviour {
 				//(ISphereController)transform.parent.GetComponent(typeof(ISphereController));
 				currentArm = (IArm)newArm.GetComponent(typeof(IArm));
 			}
+			*/
 		}
 	}
 
