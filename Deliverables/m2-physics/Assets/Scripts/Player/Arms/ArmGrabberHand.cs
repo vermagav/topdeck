@@ -49,9 +49,9 @@ public class ArmGrabberHand : MonoBehaviour {
 		}
 	}
 
-	public void SetHandCanGrab (bool status)
+	public void SetHandClosed (bool status)
 	{
-		if (status) //open hand
+		if (!status) //open hand
 		{
 			isOpen = true;
 			if (grabSpring.connectedBody != null)
