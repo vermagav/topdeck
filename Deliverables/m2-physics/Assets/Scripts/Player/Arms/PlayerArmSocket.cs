@@ -21,6 +21,8 @@ public class PlayerArmSocket : MonoBehaviour {
 				other.gameObject.transform.rotation = connector.transform.rotation;
 				other.gameObject.transform.parent = connector.transform;
 				currentArm = (IArm)other.gameObject.GetComponent(typeof(IArm));
+				SetupArm();
+
 			}
 			else //legacy code for old prefabs
 			{
@@ -50,6 +52,15 @@ public class PlayerArmSocket : MonoBehaviour {
 			//Debug.Log("setArmAxis to:" + axis);
 			Component arm = (Component)currentArm;
 			arm.SendMessage("SetArmAxis", axis);
+		}
+	}
+
+	void SetupArm()
+	{
+		if (currentArm != null)
+		{
+			Component arm = (Component)currentArm;
+			arm.SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
 		}
 	}
 }
