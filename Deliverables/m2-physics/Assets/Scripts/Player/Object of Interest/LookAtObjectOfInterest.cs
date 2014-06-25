@@ -49,7 +49,7 @@ public class LookAtObjectOfInterest : MonoBehaviour {
 
 				if(Mathf.Pow(deltaPosition.x, 2) + Mathf.Pow(deltaPosition.z, 2) > lookMinDistanceSquared)
 				{
-					if(currentItemOfInterest == null || 
+					if(currentItemOfInterest == null || otherItemOfInterest == null || 
 					   currentItemOfInterest.levelOfInterest 
 					   < otherItemOfInterest.levelOfInterest)
 					{
