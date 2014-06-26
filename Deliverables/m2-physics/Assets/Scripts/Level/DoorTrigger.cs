@@ -16,7 +16,7 @@ public class DoorTrigger : MonoBehaviour {
 	void Awake() {
 	}
 
-	void OnTriggerStay (Collider Other) {
+	void OnCollisionStay () {
 		// Change texture
 		renderer.material.mainTexture = buttonOn;
 
@@ -26,7 +26,7 @@ public class DoorTrigger : MonoBehaviour {
 		triggerActive = true;
 	}
 
-	void OnTriggerExit (Collider other) {
+	void OnCollisionExit () {
 		// Change texture
 		renderer.material.mainTexture = buttonOff;
 
@@ -34,7 +34,6 @@ public class DoorTrigger : MonoBehaviour {
 		animateDoor.CloseDoor ();
 
 		triggerActive = false;
-
 	}
 
 	public bool GetTriggerState() 
