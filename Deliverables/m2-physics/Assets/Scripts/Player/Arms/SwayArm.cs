@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SwayArm : MonoBehaviour {
+public class SwayArm : MonoBehaviour, IArm {
 
 	public float rotationLimit;
 	public float rotationSpeed;
@@ -10,7 +10,7 @@ public class SwayArm : MonoBehaviour {
 
 	private float currentRotation;
 
-	bool armSwaying = false;
+	bool armActivated = false;
 
 	CreateSparks[] sparksEmitters;
 	bool sparksFlying = false;
@@ -25,8 +25,9 @@ public class SwayArm : MonoBehaviour {
 	void FixedUpdate()
 	{
 
-		if(armSwaying)
+		if(armActivated)
 		{
+			/*
 			transform.Rotate (((float)upDown) * rotationSpeed * Time.deltaTime, 0f, 0f);
 			currentRotation += ((float)upDown) * rotationSpeed * Time.deltaTime;
 			
@@ -34,6 +35,7 @@ public class SwayArm : MonoBehaviour {
 			{
 				upDown *= -1;
 			}
+			*/
 			if (!sparksFlying)
 			{
 				foreach (CreateSparks spark in sparksEmitters)
@@ -48,7 +50,7 @@ public class SwayArm : MonoBehaviour {
 			float deltaRotation = currentRotation;
 			currentRotation = Mathf.Lerp (currentRotation, 0, 0.3f);
 			deltaRotation -= currentRotation;
-			transform.Rotate ( -deltaRotation, 0f, 0f);
+			transform.Rotate ( -deltaRotation, 0f, 0f); //TODO: ISSUE: bug with improper rotation
 			if (sparksFlying)
 			{
 				foreach (CreateSparks spark in sparksEmitters)
@@ -63,6 +65,23 @@ public class SwayArm : MonoBehaviour {
 
 	public void SetArmState(bool state)
 	{
-		armSwaying = state;
+		armActivated = state;
+	}
+
+	public void SetArmAxis(float axis)
+	{
+		RotateArmTest(axis);
+	}
+
+	void RotateArmTest(float axis)
+	{
+		//Debug.LogError (axis);
+		transform.Rotate (((float)upDown) * axis, 0f, 0f);
+		currentRotation += ((float)upDown) * axis;
+		
+		if(Mathf.Abs(currentRotation) > rotationLimit)
+		{
+			upDown *= -1;
+		}
 	}
 }

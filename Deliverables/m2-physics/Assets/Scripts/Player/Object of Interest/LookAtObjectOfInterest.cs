@@ -8,7 +8,7 @@ public class LookAtObjectOfInterest : MonoBehaviour {
 	public float lookAngle;
 	public float lookMinDistance;
 	
-	private GameObject currentItemOfInterest;
+	private InterestLevel currentItemOfInterest;
 	private Quaternion lastRotation;
 	private Quaternion targetRotation;
 	private float lookMinDistanceSquared;
@@ -38,7 +38,9 @@ public class LookAtObjectOfInterest : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider other) {
-		if(("ObjectOfInterest").Equals(Regex.Replace(other.gameObject.name, @"\_(\(.*\))", "")));
+
+		InterestLevel otherItemOfInterest = other.gameObject.GetComponent<InterestLevel>();
+		if(otherItemOfInterest != null); //("ObjectOfInterest").Equals(Regex.Replace(other.gameObject.name, @"\_(\(.*\))", ""))
 		{
 			Vector3 deltaPosition = other.transform.position - transform.position;
 			Quaternion possibleLookRotation = Quaternion.LookRotation(deltaPosition);
@@ -47,11 +49,11 @@ public class LookAtObjectOfInterest : MonoBehaviour {
 
 				if(Mathf.Pow(deltaPosition.x, 2) + Mathf.Pow(deltaPosition.z, 2) > lookMinDistanceSquared)
 				{
-					if(currentItemOfInterest == null || 
-					   currentItemOfInterest.GetComponent<InterestLevel>().levelOfInterest 
-					   < other.gameObject.GetComponent<InterestLevel>().levelOfInterest)
+					if(currentItemOfInterest == null || otherItemOfInterest == null || 
+					   currentItemOfInterest.levelOfInterest 
+					   < otherItemOfInterest.levelOfInterest)
 					{
-						currentItemOfInterest = other.gameObject;
+						currentItemOfInterest = otherItemOfInterest;
 					}
 				}
 			}
