@@ -5,10 +5,6 @@ using System.Linq;
 using UnityEngine;
 using InControl;
 
-//#if UNITY_EDITOR
-//using UnityEditor;
-//#endif
-
 
 /**
  * WARNING: This is NOT an example of how to use InControl.
@@ -27,7 +23,7 @@ namespace InControl
 
 		void OnEnable()
 		{
-			Debug.Log( "InControl (version " + InputManager.Version + ") on Unity " + InputManager.UnityVersion );
+			Debug.Log( "InControl (version " + InputManager.Version + ")" );
 
 			isPaused = false;
 			Time.timeScale = 1.0f;
@@ -52,11 +48,6 @@ namespace InControl
 		{
 			InputManager.Update();
 			CheckForPauseButton();
-
-			if (InputManager.ActiveDevice.LeftStick.Left.WasPressed)
-				Debug.Log( "LeftStick.Left.WasPressed:  " + InputManager.ActiveDevice.LeftStick.Left.WasPressed );
-			if (InputManager.ActiveDevice.LeftStick.Left.WasReleased)
-				Debug.Log( "LeftStick.Left.WasReleased: " + InputManager.ActiveDevice.LeftStick.Left.WasReleased );
 		}
 
 
@@ -104,13 +95,6 @@ namespace InControl
 			info += " (Platform: " + InputManager.Platform + ")";
 //			info += " (Joysticks " + InputManager.JoystickHash + ")";
 			info += " " + InputManager.ActiveDevice.Direction.Vector;
-
-//			#if UNITY_EDITOR
-//			if (EditorWindow.focusedWindow != null)
-//			{
-//				info += " " + EditorWindow.focusedWindow.ToString();
-//			}
-//			#endif
 
 			if (isPaused)
 			{
