@@ -2,34 +2,40 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent (typeof(PlayerMovement))]
 public class Agent : MonoBehaviour {
 	
 	private FSM.State currentState;
 	private NavMeshAgent navMeshAgent;
-
+	
 	// Public list of waypoint transforms inserted via Unity inspector
 	public Transform[] waypointList;
-
+	
 	// Index of the next waypoint to move towards
 	private int nextWaypoint;
-
+	
 	public GameObject player;
 	public int chaseDistanceThreshold;
 	public LineRenderer debugLine;
-
+	public PlayerMovement playerMovement;
+	
 	void Start () {
 		navMeshAgent = GetComponent<NavMeshAgent> ();
-
+		
 		// Set default state to patrol
 		currentState = FSM.State.Patrol;
-
+		
 		// Set index to default
 		nextWaypoint = 0;
-
+		
 		// Sanity check
 		if( waypointList.Length == 0 ) {
 			Debug.Log("ERROR: the waypoint list is empty. Check to see if waypoints were added via Unity inspector.");
 			return;
+		}
+
+		if (playerMovement == null) {
+			playerMovement = GetComponent<PlayerMovement>();
 		}
 	}
 	
@@ -41,14 +47,14 @@ public class Agent : MonoBehaviour {
 				currentState = FSM.State.Chase;
 			}
 			break;
-		
+			
 		case FSM.State.Chase:
 			if (trigger == FSM.Trigger.EnemyDisappeared) {
 				// Enemy disappeared, transition to return mode
 				currentState = FSM.State.Return;
 			}
 			break;
-		
+			
 		case FSM.State.Return:
 			if (trigger == FSM.Trigger.ReachedBase) {
 				// Reached base, transition to patrol mode
@@ -89,31 +95,29 @@ public class Agent : MonoBehaviour {
 			break;
 		};
 	}
-
+	
 	void MoveAgent (Vector3 destination) {
 		Vector3 newDestination = destination;
 		newDestination.y = this.transform.position.y;
-
-		// If in chase mode, predict where the player is headed and move ahead of it
+		
+		// If in chase mode, predict where the player is headed and try to head off
 		if (currentState == FSM.State.Chase) {
-			const int predictionRange = 4;
-			newDestination += player.transform.forward * predictionRange;
-			// TODO (1): player.transform.forward isn't pointing to in front of the player object
-			// TODO (2): multiply predictionRange by (playerSpeed / playerMaxSpeed) to base prediction on player velocity
+			const float interceptDistance = 0.5f;
+			newDestination += (player.transform.forward + playerMovement.GetTargetVelocity()) * interceptDistance;
 		}
-
+		
 		// Render line in game view to see agent target
 		debugLine.SetPosition(0, this.transform.position);
 		debugLine.SetPosition(1, newDestination);
-
+		
 		// Move navMeshAgent
 		navMeshAgent.SetDestination (newDestination);
 	}
-
+	
 	void Update () {
 		// Process current FSM state
 		ProcessState ();
-
+		
 		// State transitions for enemy sightings
 		if( Vector3.Distance(this.transform.position, player.transform.position) <= chaseDistanceThreshold ) {
 			Transition(FSM.Trigger.EnemySighted);
