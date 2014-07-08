@@ -91,14 +91,23 @@ public class Agent : MonoBehaviour {
 	}
 
 	void MoveAgent (Vector3 destination) {
-		// Move navMeshAgent
-		navMeshAgent.SetDestination (destination);
+		Vector3 newDestination = destination;
+		newDestination.y = this.transform.position.y;
+
+		// If in chase mode, predict where the player is headed and move ahead of it
+		if (currentState == FSM.State.Chase) {
+			const int predictionRange = 4;
+			newDestination += player.transform.forward * predictionRange;
+			// TODO (1): player.transform.forward isn't pointing to in front of the player object
+			// TODO (2): multiply predictionRange by (playerSpeed / playerMaxSpeed) to base prediction on player velocity
+		}
 
 		// Render line in game view to see agent target
-		Vector3 lineTarget = destination;
-		lineTarget.y = this.transform.position.y;
 		debugLine.SetPosition(0, this.transform.position);
-		debugLine.SetPosition(1, lineTarget);
+		debugLine.SetPosition(1, newDestination);
+
+		// Move navMeshAgent
+		navMeshAgent.SetDestination (newDestination);
 	}
 
 	void Update () {
