@@ -15,6 +15,7 @@ public class Agent : MonoBehaviour {
 
 	public GameObject player;
 	public int chaseDistanceThreshold;
+	public LineRenderer debugLine;
 
 	void Start () {
 		navMeshAgent = GetComponent<NavMeshAgent> ();
@@ -52,6 +53,9 @@ public class Agent : MonoBehaviour {
 			if (trigger == FSM.Trigger.ReachedBase) {
 				// Reached base, transition to patrol mode
 				currentState = FSM.State.Patrol;
+			} else if (trigger == FSM.Trigger.EnemySighted) {
+				// Eneemy sighted, transition to chase mode
+				currentState = FSM.State.Chase;
 			}
 			break;
 		};
@@ -68,22 +72,33 @@ public class Agent : MonoBehaviour {
 				}
 			}
 			// Move towards next target
-			navMeshAgent.SetDestination( waypointList[nextWaypoint].position );
+			MoveAgent( waypointList[nextWaypoint].position );
 			break;
 			
 		case FSM.State.Chase:
 			// Chase the player
-			navMeshAgent.SetDestination( player.transform.position );
+			MoveAgent( player.transform.position );
 			break;
 			
 		case FSM.State.Return:
 			// Return home
-			navMeshAgent.SetDestination( waypointList[0].position );
+			MoveAgent( waypointList[0].position );
 			if (Vector3.Distance (this.transform.position, waypointList[0].position) <= 2.0f) {
 				Transition(FSM.Trigger.ReachedBase);
 			}
 			break;
 		};
+	}
+
+	void MoveAgent (Vector3 destination) {
+		// Move navMeshAgent
+		navMeshAgent.SetDestination (destination);
+
+		// Render line in game view to see agent target
+		Vector3 lineTarget = destination;
+		lineTarget.y = this.transform.position.y;
+		debugLine.SetPosition(0, this.transform.position);
+		debugLine.SetPosition(1, lineTarget);
 	}
 
 	void Update () {
