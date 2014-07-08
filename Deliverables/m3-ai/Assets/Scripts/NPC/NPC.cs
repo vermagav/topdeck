@@ -12,21 +12,21 @@ public class NPC : MonoBehaviour {
 	void Awake()
 	{
 		nav = GetComponent<NavMeshAgent> ();
-		nav.SetDestination (location);
-		//nav.Stop ();
+		p = new NavMeshPath ();
 	}
 
 	void FixedUpdate()
 	{
 
-		nav.SetDestination (location);
+		//nav.SetDestination (location);
 
 
-		//if(nav.CalculatePath (location, p))
-		//{
-			//force = (p.corners [0] - transform.position) * forceScale;
-			//Debug.Log (p);
-		//}
-		//rigidbody.AddForce(nav.path.corners [0]);
+		if(nav.CalculatePath (location, p))
+		{
+			force = (p.corners[1] - transform.position);
+			force.y = 0f;
+			force = force.normalized * forceScale;
+			rigidbody.AddForce(force);
+		}
 	}
 }
