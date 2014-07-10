@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof(PlayerMovement))]
 public class PlayerMovementSound : MonoBehaviour {
 	
 	public bool onlyGrounded;
@@ -14,13 +13,12 @@ public class PlayerMovementSound : MonoBehaviour {
 	private float nextVolume;
 	private bool grounded;
 
-	PlayerMovement playerMovement;
+	public PlayerMovement playerMovement;
 	
 	void Awake()
 	{
 		audioSource = GetComponent<AudioSource> ();
 		lastVolume = 0f;
-		playerMovement = GetComponent<PlayerMovement>();
 	}
 	
 	void FixedUpdate ()
