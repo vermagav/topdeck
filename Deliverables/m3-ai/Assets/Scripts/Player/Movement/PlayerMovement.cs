@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour {
 				force *= Vector3.Dot(groundNormal, Vector3.up);
 
 				force =  Quaternion.AngleAxis(90f - Vector3.Angle(force, groundNormal), Vector3.Cross(groundNormal, force)) * force;
-				Debug.Log (force);
 				rigidbody.AddForce(force);
 			}
 		}
