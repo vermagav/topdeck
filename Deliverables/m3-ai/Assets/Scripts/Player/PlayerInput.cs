@@ -6,7 +6,7 @@ using InControl;
 public class PlayerInput : MonoBehaviour {
 
 	public PlayerMovement playerMovement;
-	public LookAtControllerYRotation lookAtControllerYRotation;
+	public LookAtPoint lookAtControllerYRotation;
 	public PlayerArmSocket arm;
 
 	InputDevice Gamepad;

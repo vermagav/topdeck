@@ -13,8 +13,11 @@ public class LookAtObjectOfInterest : MonoBehaviour {
 	private Quaternion targetRotation;
 	private float lookMinDistanceSquared;
 
+	private ConfigurableJoint joint;
+
 	void Awake()
 	{
+		joint = GetComponent<ConfigurableJoint> ();
 		lastRotation = transform.rotation;
 		targetRotation = transform.rotation;
 		lookMinDistanceSquared = Mathf.Pow (lookMinDistance, 2);
@@ -63,7 +66,8 @@ public class LookAtObjectOfInterest : MonoBehaviour {
 
 	private void rotateToTarget()
 	{
-		transform.rotation = Quaternion.Lerp (lastRotation, targetRotation, lookSpeed);
-		lastRotation = transform.rotation;
+		//transform.rotation = Quaternion.Lerp (lastRotation, targetRotation, lookSpeed);
+		//lastRotation = transform.rotation;
+		joint.targetRotation = targetRotation;
 	}
 }

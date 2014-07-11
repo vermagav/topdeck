@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LookAtControllerYRotation : MonoBehaviour {
+public class LookAtPoint : MonoBehaviour {
 
-	Vector3 point = new Vector3();
+	public Vector3 point = new Vector3();
 
 	//public float rotationSpeed;
 	//public float lookAngle;
+	public bool XAxis, YAxis, ZAxis;
 
 	void FixedUpdate()
 	{
@@ -22,8 +23,20 @@ public class LookAtControllerYRotation : MonoBehaviour {
 		{
 			newLookRotation = Quaternion.LookRotation(point);
 		}
-
-		//8888888888888888hingeJoint.spring.targetPosition = newLookRotation.eulerAngles.y;
+		JointSpring newSpring = hingeJoint.spring;
+		if(XAxis)
+		{
+			newSpring.targetPosition = newLookRotation.eulerAngles.x;
+		}
+		else if(YAxis)
+		{
+			newSpring.targetPosition = newLookRotation.eulerAngles.y;
+		}
+		else if(ZAxis)
+		{
+			newSpring.targetPosition = newLookRotation.eulerAngles.z;
+		}
+		hingeJoint.spring = newSpring;
 
 		//newLookRotation = Quaternion.RotateTowards(transform.parent.rotation, newLookRotation, lookAngle);
 		
