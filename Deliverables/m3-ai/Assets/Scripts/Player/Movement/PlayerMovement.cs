@@ -36,11 +36,16 @@ public class PlayerMovement : MonoBehaviour {
 				targetVelocity *= maxVelocity * movementRate;
 				Vector3 force = Vector3.zero;
 				force = Vector3.Scale((targetVelocity - rigidbody.velocity), XZplane);
+
+				if(force.magnitude < 0.1f)
+					return;
+
 				force = force / force.magnitude * maxForce * movementRate;
 
 				force *= Vector3.Dot(groundNormal, Vector3.up);
 
 				force =  Quaternion.AngleAxis(90f - Vector3.Angle(force, groundNormal), Vector3.Cross(groundNormal, force)) * force;
+
 				rigidbody.AddForce(force);
 			}
 		}

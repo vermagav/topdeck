@@ -8,6 +8,7 @@ public class LookAtPoint : MonoBehaviour {
 	//public float rotationSpeed;
 	//public float lookAngle;
 	public bool XAxis, YAxis, ZAxis;
+	public Transform anchor;
 
 	void FixedUpdate()
 	{
@@ -17,7 +18,7 @@ public class LookAtPoint : MonoBehaviour {
 
 		if(point.magnitude == 0f)
 		{
-			newLookRotation = transform.parent.rotation;
+			newLookRotation = anchor.rotation;
 		}
 		else
 		{

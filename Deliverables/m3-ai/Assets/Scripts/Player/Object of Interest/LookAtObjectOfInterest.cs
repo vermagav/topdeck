@@ -9,7 +9,6 @@ public class LookAtObjectOfInterest : MonoBehaviour {
 	public float lookMinDistance;
 	
 	private InterestLevel currentItemOfInterest;
-	private Quaternion lastRotation;
 	private Quaternion targetRotation;
 	private float lookMinDistanceSquared;
 	public Transform anchor;
@@ -19,7 +18,6 @@ public class LookAtObjectOfInterest : MonoBehaviour {
 	void Awake()
 	{
 		joint = GetComponent<ConfigurableJoint> ();
-		lastRotation = transform.rotation;
 		targetRotation = transform.rotation;
 		lookMinDistanceSquared = Mathf.Pow (lookMinDistance, 2);
 	}
@@ -32,13 +30,16 @@ public class LookAtObjectOfInterest : MonoBehaviour {
 		}
 		else
 		{
-			targetRotation = Quaternion.LookRotation(transform.InverseTransformPoint(currentItemOfInterest.transform.position));
+			targetRotation = Quaternion.Euler(0f, 0f, 0f);
+
+			//targetRotation = Quaternion.LookRotation(transform.InverseTransformPoint(currentItemOfInterest.transform.position));
 			//targetRotation = Quaternion.FromToRotation(anchor.forward, currentItemOfInterest.transform.position - anchor.position);
+			//targetRotation.eulerAngles.Set(targetRotation.eulerAngles.x, targetRotation.eulerAngles.y, 0f);
 		}
 
 
 
-		rotateToTarget ();
+		//rotateToTarget ();
 		currentItemOfInterest = null;
 	}
 
