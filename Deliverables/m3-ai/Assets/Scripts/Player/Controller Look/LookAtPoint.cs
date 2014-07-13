@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LookAtPoint : MonoBehaviour {
 
-	public Vector3 point = new Vector3();
+	private Vector3 point = new Vector3();
 
 	//public float rotationSpeed;
 	//public float lookAngle;
