@@ -29,11 +29,11 @@ public class PlayerMovement : MonoBehaviour {
 			{
 				targetVelocity = targetVelocity / targetVelocity.magnitude;
 			}
+			targetVelocity *= maxVelocity * movementRate;
 
 			//targetVelocity = transform.TransformDirection(targetVelocity);
-			if((targetVelocity != rigidbody.velocity))
+			if((targetVelocity - rigidbody.velocity).magnitude > 1f)
 			{
-				targetVelocity *= maxVelocity * movementRate;
 				Vector3 force = Vector3.zero;
 				force = Vector3.Scale((targetVelocity - rigidbody.velocity), XZplane);
 
