@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class PowerSwitch : MonoBehaviour {
 	
 	private bool isActive = false;
@@ -10,6 +11,9 @@ public class PowerSwitch : MonoBehaviour {
 
 	public ComputerPanel computerPanel;
 
+	public AnimateSwitch animateSwitch;
+	public AudioClip switchSound;
+
 	void Activate() {
 		if(isActive) {
 			return;
@@ -17,6 +21,12 @@ public class PowerSwitch : MonoBehaviour {
 
 		// Increase light intensity
 		light.intensity = activeLightIntensity;
+
+		// Animate switch
+		animateSwitch.animateSwitch();
+
+		// Play sound
+		audio.PlayOneShot (switchSound);
 
 		// Power on computer panel
 		computerPanel.PowerOn();
