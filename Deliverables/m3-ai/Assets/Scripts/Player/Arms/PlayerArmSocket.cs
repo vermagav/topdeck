@@ -2,11 +2,19 @@
 using System.Collections;
 
 public class PlayerArmSocket : MonoBehaviour {
+
+	public GameObject playerDriveTrain;
+	public GameObject playerTorso;
 	
 	public GameObject acquiredBuff;
 	public GameObject connector;
 
 	public IArm currentArm;
+
+	void Update()
+	{
+		transform.position = playerDriveTrain.transform.position;
+	}
 
 	void OnTriggerEnter (Collider other)
 	{
@@ -63,6 +71,11 @@ public class PlayerArmSocket : MonoBehaviour {
 			arm.transform.position = connector.transform.position;
 			arm.transform.rotation = connector.transform.rotation;
 			arm.transform.parent = connector.transform;
+
+			FixedJoint fixedJoint = arm.gameObject.AddComponent<FixedJoint>();
+			fixedJoint.connectedBody = playerTorso.rigidbody;
+
+
 		}
 	}
 }

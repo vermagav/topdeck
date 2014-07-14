@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GrabbableItem : MonoBehaviour {
+public class LightChaseItem : MonoBehaviour {
+
+	public Transform target;
+	public Vector3 distance;
+
 
 	// Use this for initialization
 	void Start () {
-		gameObject.tag = "Collectable";
 	
 	}
 	
