@@ -17,6 +17,7 @@ public class Agent : MonoBehaviour {
 	private int nextWaypoint;
 	
 	public GameObject player;
+	public GameObject pacifyObject; // TODO: remove if we go with tone sequence
 	public int chaseDistanceThreshold;
 	public int caughtPlayerDistanceThreshold;
 	public LineRenderer debugLine;
@@ -25,6 +26,8 @@ public class Agent : MonoBehaviour {
 	public AudioClip soundAlert;
 	public AudioClip soundLaugh;
 	public AudioClip soundLament;
+	public AudioClip soundHappy;
+	private bool happySoundPlayed;
 	private int numReturnAfterAttacking;
 
 	public float timeSinceLastAttack;
@@ -40,6 +43,7 @@ public class Agent : MonoBehaviour {
 		nextWaypoint = 0;
 		timeSinceLastAttack = 1.0f;
 		numReturnAfterAttacking = 0;
+		happySoundPlayed = false;
 		
 		// Sanity check
 		if( waypointList.Length == 0 ) {
@@ -67,6 +71,8 @@ public class Agent : MonoBehaviour {
 			if (trigger == FSM.Trigger.EnemySighted) {
 				// Enemy sighted, transition to chase mode
 				currentState = FSM.State.Chase;
+			} else if (trigger == FSM.Trigger.PacifyCondition) {
+				currentState = FSM.State.Pacified;
 			}
 			break;
 			
@@ -74,6 +80,8 @@ public class Agent : MonoBehaviour {
 			if (trigger == FSM.Trigger.EnemyDisappeared) {
 				// Enemy disappeared, transition to return mode
 				currentState = FSM.State.Return;
+			} else if (trigger == FSM.Trigger.PacifyCondition) {
+				currentState = FSM.State.Pacified;
 			}
 			break;
 			
@@ -84,7 +92,13 @@ public class Agent : MonoBehaviour {
 			} else if (trigger == FSM.Trigger.EnemySighted) {
 				// Eneemy sighted, transition to chase mode
 				currentState = FSM.State.Chase;
+			} else 	if (trigger == FSM.Trigger.PacifyCondition) {
+				currentState = FSM.State.Pacified;
 			}
+			break;
+
+		case FSM.State.Pacified:
+			// Once pacified, do nothing.
 			break;
 		};
 	}
@@ -129,6 +143,19 @@ public class Agent : MonoBehaviour {
 				Transition(FSM.Trigger.ReachedBase);
 			}
 			break;
+
+		case FSM.State.Pacified:
+			// TODO: temporary box condition for alpha
+			MoveAgent( pacifyObject.transform.position );
+			if (Vector3.Distance (this.transform.position, pacifyObject.transform.position) <= caughtPlayerDistanceThreshold) {
+				navMeshAgent.Stop (true);
+			}
+			if (!happySoundPlayed && !audio.isPlaying) {
+				audio.clip = soundHappy;
+				audio.Play();
+				happySoundPlayed = true;
+			}
+			break;
 		};
 	}
 	
@@ -155,9 +182,11 @@ public class Agent : MonoBehaviour {
 		ProcessState ();
 		
 		// State transitions for enemy sightings
-		if (player.transform.position.z < pushEntrance.position.z) {
+		if (Vector3.Distance (this.transform.position, pacifyObject.transform.position) <= chaseDistanceThreshold) {
+			Transition (FSM.Trigger.PacifyCondition);
+		} else if (player.transform.position.z < pushEntrance.position.z) {
 			Transition(FSM.Trigger.EnemyDisappeared);
-		} else if ( Vector3.Distance(this.transform.position, player.transform.position) <= chaseDistanceThreshold ) {
+		} else if (Vector3.Distance(this.transform.position, player.transform.position) <= chaseDistanceThreshold) {
 			if(!audio.isPlaying) {
 				audio.clip = soundAlert;
 				audio.Play();
