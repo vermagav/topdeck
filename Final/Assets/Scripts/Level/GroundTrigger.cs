@@ -6,7 +6,7 @@ public class GroundTrigger : MonoBehaviour {
 	public Texture buttonOff;
 	public Texture buttonOn;
 
-	public AnimateDoor animateDoor;
+	public FenceController fenceController;
 
 	bool triggerActive = false;
 
@@ -15,7 +15,7 @@ public class GroundTrigger : MonoBehaviour {
 		renderer.material.mainTexture = buttonOn;
 
 		// Lower the fence
-		animateDoor.OpenDoor ();
+		fenceController.setFenceUp (false);
 
 		triggerActive = true;
 	}
@@ -25,7 +25,7 @@ public class GroundTrigger : MonoBehaviour {
 		renderer.material.mainTexture = buttonOff;
 
 		// Raise the fence ヽ༼ຈلຈ༽ﾉ
-		animateDoor.CloseDoor ();
+		fenceController.setFenceUp (true);
 
 		triggerActive = false;
 	}
