@@ -8,8 +8,6 @@ public class GearAttach : MonoBehaviour {
 
 	public AnimateDoor animateDoor;
 
-	public AudioClip cogsAudio;
-
 	void OnTriggerEnter(Collider other)
 	{
 		if(other.gameObject.Equals(targetGear))
@@ -17,8 +15,6 @@ public class GearAttach : MonoBehaviour {
 			GetComponent<Animator>().SetBool("hasCenterGear", true);
 			other.gameObject.SetActive(false);
 			animateDoor.OpenDoor ();
-			audio.clip = cogsAudio;
-			audio.Play();
 		}
 	}
 }
