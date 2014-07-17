@@ -1,17 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class ComputerPanel : MonoBehaviour {
 
 	private bool powerState = false;
 	private bool isActive = false;
 
 	public AnimateDoor animateDoor;
+	public ComputerScreen computerScreen;
+
+	public AudioClip voiceOver_1;
+	public AudioClip voiceOver_2;
 
 	public void PowerOn() {
 		powerState = true;
-		// TODO: power on sounds and effects, need to give feedback to player
-		Debug.Log ("Computer Panel powered on...");
+
+		// Play power up sound
+		audio.PlayOneShot (voiceOver_1);
+
+		// Turn on computer screen
+		computerScreen.TurnOnScreen ();
 	}
 
 	void Activate() {
@@ -22,11 +31,8 @@ public class ComputerPanel : MonoBehaviour {
 		// Open Door
 		animateDoor.OpenDoor ();
 
-		// TODO:
-		// 		activation sounds (computer panel, door opening)
-		// 		activation visual effects
-		// 		activation GUI text
-		Debug.Log ("Computer Panel activated!");
+		// Play identification audio
+		audio.PlayOneShot (voiceOver_2);
 
 		isActive = true;
 	}
