@@ -5,6 +5,7 @@ using System.Collections;
 public class CollectableHighlights : MonoBehaviour {
 
 	public GameObject highlightContainer;
+	public AudioClip pickupSound;
 	SphereCollider collectableRangeCollider;
 
 	void Awake()
@@ -24,6 +25,8 @@ public class CollectableHighlights : MonoBehaviour {
 		{
 			Destroy (highlightContainer);
 		}
+
+		AudioSource.PlayClipAtPoint(pickupSound, transform.position);
 		Destroy (this);
 	}
 

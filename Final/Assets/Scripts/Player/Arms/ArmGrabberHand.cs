@@ -75,6 +75,7 @@ public class ArmGrabberHand : MonoBehaviour {
 				itemHeld = currentCollectableInRange;
 				itemHeld.rigidbody.isKinematic = true;
 				itemHeld.transform.position = grabPoint.transform.position;
+
 				itemHeld.GrabItem(grabPoint.rigidbody);
 				itemHeld.rigidbody.isKinematic = false;
 			}
