@@ -30,8 +30,7 @@ public class GroundTrigger : MonoBehaviour {
 		triggerActive = false;
 	}
 
-	public bool GetTriggerState() 
-	{
+	public bool GetTriggerState() {
 		return triggerActive;
 	}
 }
