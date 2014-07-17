@@ -10,23 +10,32 @@ public class Agent : MonoBehaviour {
 	
 	// Public list of waypoint transforms inserted via Unity inspector
 	public Transform[] waypointList;
+
+	public Transform pushEntrance;
 	
 	// Index of the next waypoint to move towards
 	private int nextWaypoint;
 	
 	public GameObject player;
 	public int chaseDistanceThreshold;
+	public int caughtPlayerDistanceThreshold;
 	public LineRenderer debugLine;
 	public PlayerMovement playerMovement;
-	
+	public AudioClip soundAlert;
+	public AudioClip soundLaugh;
+
+	public float timeSinceLastAttack;
+	private const float attackCooldown = 1.0f;
+
 	void Start () {
 		navMeshAgent = GetComponent<NavMeshAgent> ();
 		
 		// Set default state to patrol
 		currentState = FSM.State.Patrol;
 		
-		// Set index to default
+		// Set defaults
 		nextWaypoint = 0;
+		timeSinceLastAttack = 1.0f;
 		
 		// Sanity check
 		if( waypointList.Length == 0 ) {
@@ -38,7 +47,16 @@ public class Agent : MonoBehaviour {
 			playerMovement = GetComponent<PlayerMovement>();
 		}
 	}
-	
+
+	bool CanAttack() {
+		if (timeSinceLastAttack >= attackCooldown) {
+			return true;
+		} else {
+			timeSinceLastAttack += Time.deltaTime;
+			return false;
+		}
+	}
+
 	void Transition(FSM.Trigger trigger) {
 		switch (currentState) {
 		case FSM.State.Patrol:
@@ -84,12 +102,21 @@ public class Agent : MonoBehaviour {
 		case FSM.State.Chase:
 			// Chase the player
 			MoveAgent( player.transform.position );
+			if ( Vector3.Distance(this.transform.position, player.transform.position) <= caughtPlayerDistanceThreshold ) {
+				if(CanAttack()) {
+					player.rigidbody.AddForce((pushEntrance.position - player.transform.position) * 30, ForceMode.Impulse);
+					Transition(FSM.Trigger.EnemyDisappeared);
+					return;
+				}
+			}
 			break;
 			
 		case FSM.State.Return:
 			// Return home
 			MoveAgent( waypointList[0].position );
 			if (Vector3.Distance (this.transform.position, waypointList[0].position) <= 2.0f) {
+				audio.clip = soundLaugh;
+				audio.Play ();
 				Transition(FSM.Trigger.ReachedBase);
 			}
 			break;
@@ -119,10 +146,15 @@ public class Agent : MonoBehaviour {
 		ProcessState ();
 		
 		// State transitions for enemy sightings
-		if( Vector3.Distance(this.transform.position, player.transform.position) <= chaseDistanceThreshold ) {
-			Transition(FSM.Trigger.EnemySighted);
-		} else {
+		if (player.transform.position.z < pushEntrance.position.z) {
 			Transition(FSM.Trigger.EnemyDisappeared);
-		}
+		} else if ( Vector3.Distance(this.transform.position, player.transform.position) <= chaseDistanceThreshold ) {
+			if(!audio.isPlaying) {
+				audio.clip = soundAlert;
+				audio.Play();
+			}
+			Transition(FSM.Trigger.EnemySighted);
+		} 
+
 	}
 }
