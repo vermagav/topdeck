@@ -51,9 +51,9 @@ public class ArmGrabberHand : MonoBehaviour {
 		}
 	}
 
-	public void SetHandClosed (bool status)
+	public void SetHandClosed (float axis)
 	{
-		if (!status) //open hand
+		if (axis < 0.8) //open hand
 		{
 			isOpen = true;
 			if (itemHeld != null)

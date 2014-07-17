@@ -21,7 +21,14 @@ public class ArmGrabberHandPinchers : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		SetPinchers(hand.isOpen);
+		//SetPinchers(hand.isOpen);
+
+	}
+
+	public void SetHandClosed (float axis)
+	{
+		leftPinchers.transform.localEulerAngles = new Vector3(0, 45*(1 - axis), 0);
+		rightPinchers.transform.localEulerAngles = new Vector3(0, -45*(1 - axis), 180);
 
 	}
 

@@ -46,7 +46,7 @@ public class TelescopeArmGrab : MonoBehaviour, IArm {
 	public void SetArmState(bool state)
 	{
 		//send a message to Rob's hand implementation
-		hand.SetHandClosed(state);
+		//hand.SetHandClosed(state);
 	}
 	
 	public void SetArmAxis(float axis)
