@@ -26,6 +26,7 @@ public class PlayerArmSocket : MonoBehaviour {
 			{
 				collectable.RemoveHighlights();
 				currentArm = (IArm)other.gameObject.GetComponent(typeof(IArm));
+				other.gameObject.layer = LayerMask.NameToLayer("Player");
 				SetupArm();
 
 			}

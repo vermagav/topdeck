@@ -32,7 +32,7 @@ public class ComputerPanel : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider other) {
-		if(powerState && other.tag == "Player") {
+		if(powerState && other.tag == "Hand") {
 			Activate();
 		}
 	}
