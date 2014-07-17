@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DoorTrigger : MonoBehaviour {
+public class GroundTrigger : MonoBehaviour {
 
 	public Texture buttonOff;
 	public Texture buttonOn;
@@ -9,18 +9,12 @@ public class DoorTrigger : MonoBehaviour {
 	public AnimateDoor animateDoor;
 
 	bool triggerActive = false;
-	
-	void Update () {
-	}
-
-	void Awake() {
-	}
 
 	void OnCollisionStay () {
 		// Change texture
 		renderer.material.mainTexture = buttonOn;
 
-		// Animate the door to open
+		// Lower the fence
 		animateDoor.OpenDoor ();
 
 		triggerActive = true;
@@ -30,7 +24,7 @@ public class DoorTrigger : MonoBehaviour {
 		// Change texture
 		renderer.material.mainTexture = buttonOff;
 
-		// Animate the door to close
+		// Raise the fence ヽ༼ຈلຈ༽ﾉ
 		animateDoor.CloseDoor ();
 
 		triggerActive = false;

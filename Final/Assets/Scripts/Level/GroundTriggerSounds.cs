@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof(DoorTrigger))]
+[RequireComponent (typeof(GroundTrigger))]
 [RequireComponent (typeof(AudioSource))]
-public class DoorTriggerSounds : MonoBehaviour {
+public class GroundTriggerSounds : MonoBehaviour {
 
 	public AudioClip sfxActivated;
 	public AudioClip sfxDeactivated;
 
-	DoorTrigger trigger;
+	GroundTrigger trigger;
 	bool lastTriggerState;
 
 	// Use this for initialization
 	void Start () {
-		trigger = GetComponent<DoorTrigger>();
+		trigger = GetComponent<GroundTrigger>();
 		lastTriggerState = trigger.GetTriggerState();
 	
 	}
