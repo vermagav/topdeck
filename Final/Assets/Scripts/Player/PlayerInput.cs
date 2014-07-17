@@ -58,6 +58,8 @@ public class PlayerInput : MonoBehaviour {
 		//Vector3 point = new Vector3 (Input.GetAxis ("LookHorizontal"), 0f, Input.GetAxis ("LookVertical"));
 
 		lookAtControllerYRotation.SetPoint(new Vector3(Gamepad.RightStick.X, 0, Gamepad.RightStick.Y));
+		lookAtControllerYRotation.SetTargetVelocity(new Vector3(Gamepad.LeftStick.X * bias, 0, Gamepad.LeftStick.Y * bias));
+
 
 		//Input.GetButton("Fire2")
 

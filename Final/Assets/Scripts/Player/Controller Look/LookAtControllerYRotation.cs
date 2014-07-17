@@ -4,6 +4,7 @@ using System.Collections;
 public class LookAtControllerYRotation : MonoBehaviour {
 
 	private Vector3 point = new Vector3();
+	private Vector3 targetVelocity = new Vector3();
 
 	//public float rotationSpeed;
 	//public float lookAngle;
@@ -18,7 +19,7 @@ public class LookAtControllerYRotation : MonoBehaviour {
 
 		if(point.magnitude == 0f)
 		{
-			newLookRotation = anchor.rotation;
+			newLookRotation = Quaternion.LookRotation(targetVelocity);
 		}
 		else
 		{
@@ -48,5 +49,11 @@ public class LookAtControllerYRotation : MonoBehaviour {
 	public void SetPoint(Vector3 p)
 	{
 		point = p;
+	}
+
+	public void SetTargetVelocity(Vector3 v)
+	{
+		if(v.magnitude != 0f)
+			targetVelocity = v;
 	}
 }
