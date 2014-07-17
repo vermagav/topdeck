@@ -3,6 +3,9 @@ using System.Collections;
 
 public class ArmGrabberHand : MonoBehaviour {
 
+	public float axisOpeningThreshold = 0.2f;
+	public float axisClosingThreshold = 0.7f;
+
 	ArmGrabber parentArm;
 	SphereCollider grabRange;
 	public GameObject grabPoint;
@@ -53,7 +56,7 @@ public class ArmGrabberHand : MonoBehaviour {
 
 	public void SetHandClosed (float axis)
 	{
-		if (axis < 0.8) //open hand
+		if (axis < axisOpeningThreshold) //open hand
 		{
 			isOpen = true;
 			if (itemHeld != null)
@@ -62,7 +65,7 @@ public class ArmGrabberHand : MonoBehaviour {
 			}
 			grabPoint.SetActive (false);
 		}
-		else
+		else if (axis > axisClosingThreshold)
 		{
 			isOpen = false;
 			if (currentCollectableInRange != null)
