@@ -2,11 +2,19 @@
 using System.Collections;
 
 public class PlayerArmSocket : MonoBehaviour {
+
+	public GameObject playerDriveTrain;
+	public GameObject playerTorso;
 	
 	public GameObject acquiredBuff;
 	public GameObject connector;
 
 	public IArm currentArm;
+
+	void Update()
+	{
+		transform.position = playerDriveTrain.transform.position;
+	}
 
 	void OnTriggerEnter (Collider other)
 	{
@@ -17,9 +25,6 @@ public class PlayerArmSocket : MonoBehaviour {
 			if (collectable != null)
 			{
 				collectable.RemoveHighlights();
-				other.gameObject.transform.position = connector.transform.position;
-				other.gameObject.transform.rotation = connector.transform.rotation;
-				other.gameObject.transform.parent = connector.transform;
 				currentArm = (IArm)other.gameObject.GetComponent(typeof(IArm));
 				SetupArm();
 
@@ -63,6 +68,14 @@ public class PlayerArmSocket : MonoBehaviour {
 		{
 			Component arm = (Component)currentArm;
 			arm.SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
+			arm.transform.position = connector.transform.position;
+			arm.transform.rotation = connector.transform.rotation;
+			arm.transform.parent = connector.transform;
+
+			FixedJoint fixedJoint = arm.gameObject.AddComponent<FixedJoint>();
+			fixedJoint.connectedBody = playerTorso.rigidbody;
+
+
 		}
 	}
 }

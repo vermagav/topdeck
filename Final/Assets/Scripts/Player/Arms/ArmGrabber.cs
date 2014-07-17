@@ -29,7 +29,8 @@ public class ArmGrabber : MonoBehaviour, IArm {
 	/// <param name="state">Input state (pressed/released)</param>
 	public void SetArmState(bool state)
 	{
-		hand.SetHandClosed(state);
+		//hand.SendMessage("SetHandClosed", state, SendMessageOptions.DontRequireReceiver);
+		//hand.SetHandClosed(state);
 	}
 
 	/// <summary>
@@ -38,7 +39,7 @@ public class ArmGrabber : MonoBehaviour, IArm {
 	/// <param name="axis">Analog input axis.</param>
 	public void SetArmAxis(float axis)
 	{
-
+		hand.SendMessage("SetHandClosed", axis, SendMessageOptions.DontRequireReceiver);
 	}
 
 }

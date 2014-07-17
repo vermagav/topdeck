@@ -3,14 +3,17 @@ using System.Collections;
 
 public class ArmGrabberHand : MonoBehaviour {
 
+	public float axisOpeningThreshold = 0.2f;
+	public float axisClosingThreshold = 0.7f;
+
 	ArmGrabber parentArm;
 	SphereCollider grabRange;
 	public GameObject grabPoint;
-	SpringJoint grabSpring;
 
 	public bool isOpen = false;
 
-	Collider currentCollectableInRange;
+	public GrabbableItem currentCollectableInRange;
+	public GrabbableItem itemHeld;
 	Vector3 connectionPoint;
 
 	// Use this for initialization
@@ -18,8 +21,8 @@ public class ArmGrabberHand : MonoBehaviour {
 		grabRange = GetComponent<SphereCollider>();
 		grabRange.isTrigger = true;
 		parentArm = transform.parent.GetComponent<ArmGrabber>();
-		grabSpring = grabPoint.GetComponent<SpringJoint>();
-		grabPoint.SetActive (false);
+		//grabSpring = grabPoint.GetComponent<SpringJoint>();
+		//grabPoint.SetActive (false);
 
 	}
 	
@@ -31,9 +34,10 @@ public class ArmGrabberHand : MonoBehaviour {
 	void OnTriggerStay (Collider col) {
 		if (col.gameObject.CompareTag("Collectable"))
 		{
-			if (col != currentCollectableInRange)
+			GrabbableItem item = col.GetComponent<GrabbableItem>();
+			if (item != currentCollectableInRange && item != null)
 			{
-				currentCollectableInRange = col;
+				currentCollectableInRange = item;
 			}
 		}
 	}
@@ -42,32 +46,37 @@ public class ArmGrabberHand : MonoBehaviour {
 		if (col.gameObject.CompareTag("Collectable"))
 		{
 			//Debug.LogError ("Trigger Exit");
-			if (col == currentCollectableInRange)
+			GrabbableItem item = col.GetComponent<GrabbableItem>();
+			if (item == currentCollectableInRange)
 			{
 				currentCollectableInRange = null;
 			}
 		}
 	}
 
-	public void SetHandClosed (bool status)
+	public void SetHandClosed (float axis)
 	{
-		if (!status) //open hand
+		if (axis < axisOpeningThreshold) //open hand
 		{
 			isOpen = true;
-			if (grabSpring.connectedBody != null)
+			if (itemHeld != null)
 			{
-				grabSpring.connectedBody = null;
+				itemHeld.ReleaseItem();
 			}
 			grabPoint.SetActive (false);
 		}
-		else
+		else if (axis > axisClosingThreshold)
 		{
 			isOpen = false;
 			if (currentCollectableInRange != null)
 			{
 				grabPoint.SetActive(true);
-				grabSpring = grabPoint.GetComponent<SpringJoint>();
-				grabSpring.connectedBody = currentCollectableInRange.rigidbody;
+
+				itemHeld = currentCollectableInRange;
+				itemHeld.rigidbody.isKinematic = true;
+				itemHeld.transform.position = grabPoint.transform.position;
+				itemHeld.GrabItem(grabPoint.rigidbody);
+				itemHeld.rigidbody.isKinematic = false;
 			}
 		}
 	}
