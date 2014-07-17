@@ -74,7 +74,9 @@ public class ArmGrabberHand : MonoBehaviour {
 
 				itemHeld = currentCollectableInRange;
 				itemHeld.rigidbody.isKinematic = true;
-				itemHeld.transform.position = grabPoint.transform.position;
+
+				//HACK: Keeps the held object from flying away (should drop straight down)
+				itemHeld.transform.position = grabPoint.transform.position + transform.forward * (itemHeld.transform.localScale.x - 1);
 
 				itemHeld.GrabItem(grabPoint.rigidbody);
 				itemHeld.rigidbody.isKinematic = false;
