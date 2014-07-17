@@ -6,13 +6,15 @@ public class FSM : MonoBehaviour {
 	public enum State {
 		Patrol,
 		Chase,
-		Return
+		Return,
+		Pacified
 	};
 
 	public enum Trigger {
 		EnemySighted,
 		EnemyDisappeared,
-		ReachedBase
+		ReachedBase,
+		PacifyCondition
 	};
 
 }

@@ -21,8 +21,11 @@ public class Agent : MonoBehaviour {
 	public int caughtPlayerDistanceThreshold;
 	public LineRenderer debugLine;
 	public PlayerMovement playerMovement;
+
 	public AudioClip soundAlert;
 	public AudioClip soundLaugh;
+	public AudioClip soundLament;
+	private int numReturnAfterAttacking;
 
 	public float timeSinceLastAttack;
 	private const float attackCooldown = 1.0f;
@@ -36,6 +39,7 @@ public class Agent : MonoBehaviour {
 		// Set defaults
 		nextWaypoint = 0;
 		timeSinceLastAttack = 1.0f;
+		numReturnAfterAttacking = 0;
 		
 		// Sanity check
 		if( waypointList.Length == 0 ) {
@@ -115,7 +119,12 @@ public class Agent : MonoBehaviour {
 			// Return home
 			MoveAgent( waypointList[0].position );
 			if (Vector3.Distance (this.transform.position, waypointList[0].position) <= 2.0f) {
-				audio.clip = soundLaugh;
+				numReturnAfterAttacking++;
+				if(numReturnAfterAttacking % 2 == 1) {
+					audio.clip = soundLaugh;
+				} else {
+					audio.clip = soundLament;
+				}
 				audio.Play ();
 				Transition(FSM.Trigger.ReachedBase);
 			}
@@ -154,7 +163,6 @@ public class Agent : MonoBehaviour {
 				audio.Play();
 			}
 			Transition(FSM.Trigger.EnemySighted);
-		} 
-
+		}
 	}
 }
