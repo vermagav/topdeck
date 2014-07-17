@@ -20,7 +20,9 @@ public class GUIController : MonoBehaviour {
 
 	void Awake()
 	{
-		color = Color.white;//GUI.color;
+		color = Color.white;
+		color.a = 0f;
+		//GUI.color;
 	}
 
 	void OnGUI()
