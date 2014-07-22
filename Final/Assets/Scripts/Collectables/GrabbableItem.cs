@@ -3,12 +3,18 @@ using System.Collections;
 
 public class GrabbableItem : MonoBehaviour {
 
+	ObjectHighlights feedbackHighlights;
+	bool feedbackPresent { get { return feedbackHighlights != null; } }
+
 	//experiment with different types of joints here
 	FixedJoint joint = null;
 
 	// Use this for initialization
 	void Start () {
 		gameObject.tag = "Collectable";
+		feedbackHighlights = GetComponent<ObjectHighlights>();
+		if (!feedbackPresent)
+			feedbackHighlights = gameObject.AddComponent<ObjectHighlights>();
 	}
 	
 	// Update is called once per frame
@@ -24,6 +30,8 @@ public class GrabbableItem : MonoBehaviour {
 		rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
 		joint = gameObject.AddComponent<FixedJoint>();
 		joint.connectedBody = grabPoint;
+		if (feedbackPresent)
+			feedbackHighlights.SetHighlight(true, 0);
 		//rigidbody.isKinematic = true;
 
 	}
@@ -38,5 +46,7 @@ public class GrabbableItem : MonoBehaviour {
 		}
 
 		rigidbody.constraints = RigidbodyConstraints.None;
+		if (feedbackPresent)
+			feedbackHighlights.SetHighlight(false, 0);
 	}
 }

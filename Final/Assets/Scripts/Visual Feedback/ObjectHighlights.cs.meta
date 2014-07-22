@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 1fc5530074afd474a95db91838dd1313
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - rampTexture: {fileID: 2800000, guid: d2f738c1f513b4575ad0fb9feaf2f2f9, type: 3}
+  - highlightShader: {fileID: 4800000, guid: 9a873f3b688ad4aa2ad46b2301942e84, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
