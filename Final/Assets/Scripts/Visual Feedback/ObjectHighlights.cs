@@ -33,8 +33,8 @@ public class ObjectHighlights : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		highlightPower = Mathf.PingPong(Time.time, 1);
-		RefreshMaterial();
+		//highlightPower = Mathf.PingPong(Time.time, 1);
+		//RefreshMaterial();
 	
 	}
 

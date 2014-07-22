@@ -13,8 +13,10 @@ public class GrabbableItem : MonoBehaviour {
 	void Start () {
 		gameObject.tag = "Collectable";
 		feedbackHighlights = GetComponent<ObjectHighlights>();
+		/*
 		if (!feedbackPresent)
 			feedbackHighlights = gameObject.AddComponent<ObjectHighlights>();
+		*/
 	}
 	
 	// Update is called once per frame
