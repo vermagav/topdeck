@@ -6,9 +6,8 @@ public class PowerSwitch : MonoBehaviour {
 	
 	private bool isActive = false;
 
-	public Light light;
-	public float activeLightIntensity = 0.3f;
-
+	public GameObject lightContainer;
+	
 	public ComputerPanel computerPanel;
 
 	public AnimateSwitch animateSwitch;
@@ -20,8 +19,7 @@ public class PowerSwitch : MonoBehaviour {
 		}
 
 		// Increase light intensity
-		light.intensity = activeLightIntensity;
-
+		lightContainer.BroadcastMessage ("turnOn");
 		// Animate switch
 		animateSwitch.animateSwitch();
 

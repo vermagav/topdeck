@@ -4,7 +4,7 @@ using System.Collections;
 public class LookAtControllerYRotation : MonoBehaviour {
 
 	private Vector3 point = new Vector3();
-	private Vector3 targetVelocity = new Vector3();
+	private Vector3 targetVelocity = Vector3.forward;
 
 	//public float rotationSpeed;
 	//public float lookAngle;
