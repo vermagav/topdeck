@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ArmGrabberHand : MonoBehaviour {
+public class ArmGrabberHand : BaseRobotHand {
 
 	public float axisOpeningThreshold = 0.2f;
 	public float axisClosingThreshold = 0.7f;
-
-	ArmGrabber parentArm;
+	
 	SphereCollider grabRange;
 	public GameObject grabPoint;
 
@@ -20,10 +19,6 @@ public class ArmGrabberHand : MonoBehaviour {
 	void Start () {
 		grabRange = GetComponent<SphereCollider>();
 		grabRange.isTrigger = true;
-		parentArm = transform.parent.GetComponent<ArmGrabber>();
-		//grabSpring = grabPoint.GetComponent<SpringJoint>();
-		//grabPoint.SetActive (false);
-
 	}
 	
 	// Update is called once per frame
@@ -35,6 +30,7 @@ public class ArmGrabberHand : MonoBehaviour {
 		if (col.gameObject.CompareTag("Collectable"))
 		{
 			GrabbableItem item = col.GetComponent<GrabbableItem>();
+
 			if (item != currentCollectableInRange && item != null)
 			{
 				currentCollectableInRange = item;
@@ -47,6 +43,7 @@ public class ArmGrabberHand : MonoBehaviour {
 		{
 			//Debug.LogError ("Trigger Exit");
 			GrabbableItem item = col.GetComponent<GrabbableItem>();
+
 			if (item == currentCollectableInRange)
 			{
 				currentCollectableInRange = null;
@@ -54,7 +51,7 @@ public class ArmGrabberHand : MonoBehaviour {
 		}
 	}
 
-	public void SetHandClosed (float axis)
+	public override void UpdateInputAxis (float axis)
 	{
 		if (axis < axisOpeningThreshold) //open hand
 		{

@@ -26,7 +26,8 @@ public class CollectableHighlights : MonoBehaviour {
 			Destroy (highlightContainer);
 		}
 
-		AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+		if (pickupSound != null)
+			AudioSource.PlayClipAtPoint(pickupSound, transform.position);
 		Destroy (this);
 	}
 
