@@ -2,7 +2,10 @@
 using System.Collections;
 
 public class TelescopeArm : MonoBehaviour, IArm {
-	
+
+	// private field assigned but not used.
+	#pragma warning disable 0414 
+
 	public float maxExtend = 5f;
 	public GameObject hand;
 	public GameObject piston;

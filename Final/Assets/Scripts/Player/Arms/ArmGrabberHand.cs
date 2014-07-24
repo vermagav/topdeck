@@ -6,7 +6,7 @@ public class ArmGrabberHand : MonoBehaviour {
 	public float axisOpeningThreshold = 0.2f;
 	public float axisClosingThreshold = 0.7f;
 
-	ArmGrabber parentArm;
+	//ArmGrabber parentArm;
 	SphereCollider grabRange;
 	public GameObject grabPoint;
 
@@ -20,7 +20,7 @@ public class ArmGrabberHand : MonoBehaviour {
 	void Start () {
 		grabRange = GetComponent<SphereCollider>();
 		grabRange.isTrigger = true;
-		parentArm = transform.parent.GetComponent<ArmGrabber>();
+		//parentArm = transform.parent.GetComponent<ArmGrabber>();
 		//grabSpring = grabPoint.GetComponent<SpringJoint>();
 		//grabPoint.SetActive (false);
 

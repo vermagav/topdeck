@@ -3,6 +3,9 @@ using System.Collections;
 
 public class TelescopeArmGrab : MonoBehaviour, IArm {
 
+	// private field assigned but not used.
+	#pragma warning disable 0414 
+
 	public ArmGrabberHand hand;
 
 	public float maxExtend = 5f;

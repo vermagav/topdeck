@@ -24,6 +24,7 @@ public class ObjectHighlights : MonoBehaviour {
 		highlightShader = Shader.Find("VGDCustom/HighlightPickup");
 		rampTexture = Resources.Load("Textures/ObjectHighlightRamp") as Texture2D;
 		highlightMaterial = new Material(highlightShader);
+		renderer.material = highlightMaterial;
 		renderer.material.name = "Toon Highlight";
 		renderer.material.shader = highlightShader;
 		renderer.material.SetTexture("_Ramp", rampTexture);

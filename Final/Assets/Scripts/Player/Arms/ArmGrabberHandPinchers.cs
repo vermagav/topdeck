@@ -5,16 +5,16 @@ using System.Collections;
 /// <summary>
 /// This is now solely an animation view and does not perform any connections.
 /// </summary>
-public class ArmGrabberHandPinchers : MonoBehaviour {
+public class ArmGrabberHandPinchers : MonoBehaviour, IHandView {
 
-	ArmGrabberHand hand;
+	//ArmGrabberHand hand;
 	public GameObject leftPinchers;
 	public GameObject rightPinchers;
 	//SphereCollider rigidBodyCollider;
 
 	// Use this for initialization
 	void Start () {
-		hand = GetComponent<ArmGrabberHand>();
+		//hand = GetComponent<ArmGrabberHand>();
 		//rigidBodyCollider = transform.FindChild("GrabPoint").GetComponent<SphereCollider>();
 	
 	}
