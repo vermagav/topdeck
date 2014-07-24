@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TelescopeArmGrab : MonoBehaviour, IArm {
+public class TelescopeArmGrab : BaseRobotArm {
 
 	// private field assigned but not used.
 	#pragma warning disable 0414 
@@ -46,13 +46,13 @@ public class TelescopeArmGrab : MonoBehaviour, IArm {
 		piston.transform.localScale = new Vector3(0.3f, wrist.transform.localPosition.z / 2f, 0.3f);//hand.transform.localPosition.z / 2f);
 	}
 	
-	public void SetArmState(bool state)
+	public override void SetArmState(bool state)
 	{
 		//send a message to Rob's hand implementation
 		//hand.SetHandClosed(state);
 	}
 	
-	public void SetArmAxis(float axis)
+	public override void SetArmAxis(float axis)
 	{
 		//telescope the arm
 		desiredPosition.z = axis * maxExtend;

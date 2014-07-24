@@ -18,11 +18,13 @@ public class ObjectHighlights : MonoBehaviour {
 	public Texture2D rampTexture;
 	Shader highlightShader;
 	Material highlightMaterial;
+	Material originalMaterial;
 
 	// Use this for initialization
 	void Start () {
 		highlightShader = Shader.Find("VGDCustom/HighlightPickup");
 		rampTexture = Resources.Load("Textures/ObjectHighlightRamp") as Texture2D;
+		originalMaterial = renderer.material;
 		highlightMaterial = new Material(highlightShader);
 		renderer.material = highlightMaterial;
 		renderer.material.name = "Toon Highlight";
@@ -56,5 +58,14 @@ public class ObjectHighlights : MonoBehaviour {
 		renderer.material.SetFloat("_Outline", pinLightingOutline);
 		renderer.material.SetFloat("_Amount", vertexExtrusion);
 		renderer.material.SetFloat("_CrossFade", highlightPower);
+	}
+
+	//for future use (dynamic highlights)
+	void RestoreOriginalMaterial() {
+		renderer.material = originalMaterial;
+	}
+
+	void RestoreHighlightMaterial() {
+		renderer.material = highlightMaterial;
 	}
 }

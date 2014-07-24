@@ -9,7 +9,7 @@ public class PlayerArmSocket : MonoBehaviour {
 	public GameObject acquiredBuff;
 	public GameObject connector;
 
-	public IArm currentArm;
+	public BaseRobotArm currentArm;
 
 	void Update()
 	{
@@ -25,7 +25,7 @@ public class PlayerArmSocket : MonoBehaviour {
 			if (collectable != null)
 			{
 				collectable.RemoveHighlights();
-				currentArm = (IArm)other.gameObject.GetComponent(typeof(IArm));
+				currentArm = other.gameObject.GetComponent<BaseRobotArm>();
 				other.gameObject.layer = LayerMask.NameToLayer("Player");
 				SetupArm();
 
@@ -48,8 +48,7 @@ public class PlayerArmSocket : MonoBehaviour {
 	{
 		if (currentArm != null)
 		{
-			Component arm = (Component)currentArm;
-			arm.SendMessage("SetArmState", state);
+			currentArm.SendMessage("SetArmState", state);
 		}
 	}
 
@@ -58,8 +57,7 @@ public class PlayerArmSocket : MonoBehaviour {
 		if (currentArm != null)
 		{
 			//Debug.Log("setArmAxis to:" + axis);
-			Component arm = (Component)currentArm;
-			arm.SendMessage("SetArmAxis", axis);
+			currentArm.SendMessage("SetArmAxis", axis);
 		}
 	}
 
@@ -67,13 +65,12 @@ public class PlayerArmSocket : MonoBehaviour {
 	{
 		if (currentArm != null)
 		{
-			Component arm = (Component)currentArm;
-			arm.SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
-			arm.transform.position = connector.transform.position;
-			arm.transform.rotation = connector.transform.rotation;
-			arm.transform.parent = connector.transform;
+			currentArm.SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
+			currentArm.transform.position = connector.transform.position;
+			currentArm.transform.rotation = connector.transform.rotation;
+			currentArm.transform.parent = connector.transform;
 
-			FixedJoint fixedJoint = arm.gameObject.AddComponent<FixedJoint>();
+			FixedJoint fixedJoint = currentArm.gameObject.AddComponent<FixedJoint>();
 			fixedJoint.connectedBody = playerTorso.rigidbody;
 
 
