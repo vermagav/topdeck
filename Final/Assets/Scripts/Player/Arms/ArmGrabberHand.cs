@@ -30,6 +30,7 @@ public class ArmGrabberHand : BaseRobotHand {
 		if (col.gameObject.CompareTag("Collectable"))
 		{
 			GrabbableItem item = col.GetComponent<GrabbableItem>();
+
 			if (item != currentCollectableInRange && item != null)
 			{
 				currentCollectableInRange = item;
@@ -42,6 +43,7 @@ public class ArmGrabberHand : BaseRobotHand {
 		{
 			//Debug.LogError ("Trigger Exit");
 			GrabbableItem item = col.GetComponent<GrabbableItem>();
+
 			if (item == currentCollectableInRange)
 			{
 				currentCollectableInRange = null;
@@ -49,7 +51,7 @@ public class ArmGrabberHand : BaseRobotHand {
 		}
 	}
 
-	public override void SetHandClosed (float axis)
+	public override void UpdateInputAxis (float axis)
 	{
 		if (axis < axisOpeningThreshold) //open hand
 		{

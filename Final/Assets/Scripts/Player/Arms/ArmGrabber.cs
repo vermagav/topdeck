@@ -39,7 +39,7 @@ public class ArmGrabber : BaseRobotArm {
 	/// <param name="axis">Analog input axis.</param>
 	public override void SetArmAxis(float axis)
 	{
-		hand.SendMessage("SetHandClosed", axis, SendMessageOptions.DontRequireReceiver);
+		hand.SendMessage("UpdateInputAxis", axis);
 	}
 
 }

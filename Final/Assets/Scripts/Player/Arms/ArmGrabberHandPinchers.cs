@@ -20,7 +20,7 @@ public class ArmGrabberHandPinchers : BaseRobotHand {
 
 	}
 
-	public override void SetHandClosed (float axis)
+	public override void UpdateInputAxis (float axis)
 	{
 		leftPinchers.transform.localEulerAngles = new Vector3(0, 45*(1 - axis), 0);
 		rightPinchers.transform.localEulerAngles = new Vector3(0, -45*(1 - axis), 180);
