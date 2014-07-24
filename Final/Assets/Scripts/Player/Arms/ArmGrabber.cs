@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ArmGrabber : MonoBehaviour, IArm {
+public class ArmGrabber : BaseRobotArm {
 
-	public ArmGrabberHand hand;
+	public BaseRobotHand hand;
 
 	// Use this for initialization
 	void Start () {
-		hand = transform.FindChild ("Hand").GetComponent<ArmGrabberHand>();
+		hand = transform.FindChild ("Hand").GetComponent<BaseRobotHand>();
 
 	}
 	
@@ -27,7 +27,7 @@ public class ArmGrabber : MonoBehaviour, IArm {
 	/// Translates bumper button input to arm action.
 	/// </summary>
 	/// <param name="state">Input state (pressed/released)</param>
-	public void SetArmState(bool state)
+	public override void SetArmState(bool state)
 	{
 		//hand.SendMessage("SetHandClosed", state, SendMessageOptions.DontRequireReceiver);
 		//hand.SetHandClosed(state);
@@ -37,9 +37,9 @@ public class ArmGrabber : MonoBehaviour, IArm {
 	/// Translates analog trigger input to arm action.
 	/// </summary>
 	/// <param name="axis">Analog input axis.</param>
-	public void SetArmAxis(float axis)
+	public override void SetArmAxis(float axis)
 	{
-		hand.SendMessage("SetHandClosed", axis, SendMessageOptions.DontRequireReceiver);
+		hand.SendMessage("UpdateInputAxis", axis);
 	}
 
 }

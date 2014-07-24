@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ObjectHighlights : MonoBehaviour {
 
+	public bool highlightPulse = false;
+
 	public Color highlightColor = Color.green;
 	public Color outlineColor = Color.white;
 
@@ -18,12 +20,15 @@ public class ObjectHighlights : MonoBehaviour {
 	public Texture2D rampTexture;
 	Shader highlightShader;
 	Material highlightMaterial;
+	Material originalMaterial;
 
 	// Use this for initialization
 	void Start () {
 		highlightShader = Shader.Find("VGDCustom/HighlightPickup");
 		rampTexture = Resources.Load("Textures/ObjectHighlightRamp") as Texture2D;
+		originalMaterial = renderer.material;
 		highlightMaterial = new Material(highlightShader);
+		renderer.material = highlightMaterial;
 		renderer.material.name = "Toon Highlight";
 		renderer.material.shader = highlightShader;
 		renderer.material.SetTexture("_Ramp", rampTexture);
@@ -33,9 +38,11 @@ public class ObjectHighlights : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//highlightPower = Mathf.PingPong(Time.time, 1);
-		//RefreshMaterial();
-	
+		if (highlightPulse)
+		{
+			highlightPower = Mathf.PingPong(Time.time, 1);
+			RefreshMaterial();
+		}
 	}
 
 	public void SetHighlight(bool state, float time)
@@ -56,4 +63,18 @@ public class ObjectHighlights : MonoBehaviour {
 		renderer.material.SetFloat("_Amount", vertexExtrusion);
 		renderer.material.SetFloat("_CrossFade", highlightPower);
 	}
+
+	void OnDestroy() {
+		RestoreOriginalMaterial();
+	}
+
+	//for future use (dynamic highlights)
+	void RestoreOriginalMaterial() {
+		renderer.material = originalMaterial;
+	}
+
+	void RestoreHighlightMaterial() {
+		renderer.material = highlightMaterial;
+	}
+
 }

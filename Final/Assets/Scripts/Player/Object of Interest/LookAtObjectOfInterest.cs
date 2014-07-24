@@ -40,7 +40,7 @@ public class LookAtObjectOfInterest : MonoBehaviour {
 	void OnTriggerStay(Collider other) {
 		
 		InterestLevel otherItemOfInterest = other.gameObject.GetComponent<InterestLevel>();
-		if(otherItemOfInterest != null); //("ObjectOfInterest").Equals(Regex.Replace(other.gameObject.name, @"\_(\(.*\))", ""))
+		if(otherItemOfInterest != null) //("ObjectOfInterest").Equals(Regex.Replace(other.gameObject.name, @"\_(\(.*\))", ""))
 		{
 			Vector3 deltaPosition = other.transform.position - transform.position;
 			Quaternion possibleLookRotation = Quaternion.LookRotation(deltaPosition);

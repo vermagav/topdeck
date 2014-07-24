@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SwayArm : MonoBehaviour, IArm {
+public class SwayArm : BaseRobotArm {
 
 	public float rotationLimit;
 	public float rotationSpeed;
@@ -63,12 +63,12 @@ public class SwayArm : MonoBehaviour, IArm {
 
 	}
 
-	public void SetArmState(bool state)
+	public override void SetArmState(bool state)
 	{
 		armActivated = state;
 	}
 
-	public void SetArmAxis(float axis)
+	public override void SetArmAxis(float axis)
 	{
 		RotateArmTest(axis);
 	}
