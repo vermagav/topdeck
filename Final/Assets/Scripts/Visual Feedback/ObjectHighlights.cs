@@ -3,9 +3,17 @@ using System.Collections;
 
 public class ObjectHighlights : MonoBehaviour {
 
+	public enum State
+	{
+		Original,
+		Highlight
+	}
+
+	public State objectState = State.Original;
+
 	public bool highlightPulse = false;
 
-	public Color highlightColor = Color.green;
+	public Color highlightColor = new Color(0, 97/255f, 1);
 	public Color outlineColor = Color.white;
 
 	[Range(0,1)]
@@ -18,6 +26,7 @@ public class ObjectHighlights : MonoBehaviour {
 	public float highlightPower = 0;
 
 	public Texture2D rampTexture;
+	Texture2D originalTexture;
 	Shader highlightShader;
 	Material highlightMaterial;
 	Material originalMaterial;
@@ -27,12 +36,16 @@ public class ObjectHighlights : MonoBehaviour {
 		highlightShader = Shader.Find("VGDCustom/HighlightPickup");
 		rampTexture = Resources.Load("Textures/ObjectHighlightRamp") as Texture2D;
 		originalMaterial = renderer.material;
+		originalTexture = (Texture2D)renderer.material.mainTexture;
 		highlightMaterial = new Material(highlightShader);
 		renderer.material = highlightMaterial;
 		renderer.material.name = "Toon Highlight";
 		renderer.material.shader = highlightShader;
 		renderer.material.SetTexture("_Ramp", rampTexture);
+		renderer.material.mainTexture = originalTexture;
+		objectState = State.Highlight;
 		RefreshMaterial();
+		RestoreOriginalMaterial();
 
 	}
 	
@@ -47,13 +60,19 @@ public class ObjectHighlights : MonoBehaviour {
 
 	public void SetHighlight(bool state, float time)
 	{
+		if (objectState == State.Original)
+			return;
+
 		//time does nothing currently, but will animate the fading on/off in the future
 		if (state)
+		{
 			highlightPower = 1;
+		}
 		else
+		{
 			highlightPower = 0;
+		}
 		RefreshMaterial();
-
 	}
 
 	void RefreshMaterial() {
@@ -69,12 +88,20 @@ public class ObjectHighlights : MonoBehaviour {
 	}
 
 	//for future use (dynamic highlights)
-	void RestoreOriginalMaterial() {
-		renderer.material = originalMaterial;
+	public void RestoreOriginalMaterial() {
+		if (objectState == State.Highlight)
+		{
+			renderer.material = originalMaterial;
+			objectState = State.Original;
+		}
 	}
 
-	void RestoreHighlightMaterial() {
-		renderer.material = highlightMaterial;
+	public void RestoreHighlightMaterial() {
+		if (objectState == State.Original)
+		{
+			renderer.material = highlightMaterial;
+			objectState = State.Highlight;
+		}
 	}
 
 }
