@@ -12,8 +12,9 @@ public class ObjectHighlights : MonoBehaviour {
 	public State objectState = State.Original;
 
 	public bool highlightPulse = false;
+	public float pulseTime = 0.5f;
 
-	public Color highlightColor = new Color(0, 97/255f, 1);
+	public Color highlightColor = new Color(0, 97/255f, 1); //change this to robot "highlight" color
 	public Color outlineColor = Color.white;
 
 	[Range(0,1)]
@@ -26,7 +27,7 @@ public class ObjectHighlights : MonoBehaviour {
 	public float highlightPower = 0;
 
 	public Texture2D rampTexture;
-	Texture2D originalTexture;
+	public Texture2D originalTexture;
 	Shader highlightShader;
 	Material highlightMaterial;
 	Material originalMaterial;
@@ -36,13 +37,13 @@ public class ObjectHighlights : MonoBehaviour {
 		highlightShader = Shader.Find("VGDCustom/HighlightPickup");
 		rampTexture = Resources.Load("Textures/ObjectHighlightRamp") as Texture2D;
 		originalMaterial = renderer.material;
-		originalTexture = (Texture2D)renderer.material.mainTexture;
+		originalTexture = renderer.material.mainTexture as Texture2D;
 		highlightMaterial = new Material(highlightShader);
+		highlightMaterial.name = gameObject.name + "(H)";
+		highlightMaterial.shader = highlightShader;
+		highlightMaterial.SetTexture("_Ramp", rampTexture);
+		highlightMaterial.SetTexture("_MainTex", originalTexture);
 		renderer.material = highlightMaterial;
-		renderer.material.name = "Toon Highlight";
-		renderer.material.shader = highlightShader;
-		renderer.material.SetTexture("_Ramp", rampTexture);
-		renderer.material.mainTexture = originalTexture;
 		objectState = State.Highlight;
 		RefreshMaterial();
 		RestoreOriginalMaterial();
@@ -51,9 +52,10 @@ public class ObjectHighlights : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (highlightPulse)
+		if (highlightPulse && objectState == State.Highlight)
 		{
-			highlightPower = Mathf.PingPong(Time.time, 1);
+			highlightPower = Mathf.PingPong (Time.time, pulseTime);
+			//POLISH: look into Mathf.SmoothStep here
 			RefreshMaterial();
 		}
 	}
@@ -76,11 +78,14 @@ public class ObjectHighlights : MonoBehaviour {
 	}
 
 	void RefreshMaterial() {
-		renderer.material.SetColor("_Color", highlightColor);
-		renderer.material.SetColor("_OutlineColor", outlineColor);
-		renderer.material.SetFloat("_Outline", pinLightingOutline);
-		renderer.material.SetFloat("_Amount", vertexExtrusion);
-		renderer.material.SetFloat("_CrossFade", highlightPower);
+		if (objectState == State.Highlight)
+		{
+			renderer.material.SetColor("_Color", highlightColor);
+			renderer.material.SetColor("_OutlineColor", outlineColor);
+			renderer.material.SetFloat("_Outline", pinLightingOutline);
+			renderer.material.SetFloat("_Amount", vertexExtrusion);
+			renderer.material.SetFloat("_CrossFade", highlightPower);
+		}
 	}
 
 	void OnDestroy() {

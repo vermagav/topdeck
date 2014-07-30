@@ -47,6 +47,7 @@ public class GrabbableItem : MonoBehaviour {
 		{
 			feedbackHighlights.RestoreHighlightMaterial();
 			feedbackHighlights.SetHighlight(true, 0);
+			feedbackHighlights.highlightPulse = true;
 		}
 		//rigidbody.isKinematic = true;
 
@@ -73,6 +74,7 @@ public class GrabbableItem : MonoBehaviour {
 		{
 			feedbackHighlights.RestoreOriginalMaterial();
 			feedbackHighlights.SetHighlight(false, 0);
+			feedbackHighlights.highlightPulse = false;
 		}
 	}
 
