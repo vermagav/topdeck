@@ -7,7 +7,7 @@ public class TelescopeArm : BaseRobotArm {
 	#pragma warning disable 0414 
 
 	public float maxExtend = 5f;
-	public GameObject hand;
+	public GameObject handGO;
 	public GameObject piston;
 
 	private ConfigurableJoint handJoint;
@@ -18,8 +18,8 @@ public class TelescopeArm : BaseRobotArm {
 	void Awake()
 	{
 		desiredPosition = new Vector3(0f, 0f, 0f);
-		restingPosition = hand.transform.localPosition;
-		handJoint = hand.GetComponent<ConfigurableJoint> ();
+		restingPosition = handGO.transform.localPosition;
+		handJoint = handGO.GetComponent<ConfigurableJoint> ();
 	}
 
 	void FixedUpdate()
@@ -33,8 +33,8 @@ public class TelescopeArm : BaseRobotArm {
 
 		//hand.transform.localPosition = Vector3.Lerp (hand.transform.localPosition, restingPosition + desiredPosition, moveSpeed);
 		handJoint.targetPosition = -(desiredPosition);
-		piston.transform.localPosition = hand.transform.localPosition / 2f;
-		piston.transform.localScale = new Vector3(0.3f, hand.transform.localPosition.z / 2f, 0.3f);//hand.transform.localPosition.z / 2f);
+		piston.transform.localPosition = handGO.transform.localPosition / 2f;
+		piston.transform.localScale = new Vector3(0.3f, handGO.transform.localPosition.z / 2f, 0.3f);//hand.transform.localPosition.z / 2f);
 	}
 	
 	public override void SetArmState(bool state)

@@ -22,8 +22,11 @@ public class ArmGrabberHand : BaseRobotHand {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void FixedUpdate () {
+		if (itemHeld != null)
+		{
+			itemHeld.RotateItemWithBody(GetTorsoRotationState());
+		}
 	}
 
 	void OnTriggerStay (Collider col) {
@@ -53,16 +56,17 @@ public class ArmGrabberHand : BaseRobotHand {
 
 	public override void UpdateInputAxis (float axis)
 	{
-		if (axis < axisOpeningThreshold) //open hand
+		if (axis < axisOpeningThreshold) //hand is opened
 		{
 			isOpen = true;
 			if (itemHeld != null)
 			{
 				itemHeld.ReleaseItem();
+				itemHeld = null;
 			}
 			grabPoint.SetActive (false);
 		}
-		else if (axis > axisClosingThreshold)
+		else if (axis > axisClosingThreshold) //hand is closed
 		{
 			isOpen = false;
 			if (currentCollectableInRange != null)

@@ -3,8 +3,6 @@ using System.Collections;
 
 public class ArmGrabber : BaseRobotArm {
 
-	public BaseRobotHand hand;
-
 	// Use this for initialization
 	void Start () {
 		hand = transform.FindChild ("Hand").GetComponent<BaseRobotHand>();
@@ -40,6 +38,7 @@ public class ArmGrabber : BaseRobotArm {
 	public override void SetArmAxis(float axis)
 	{
 		hand.SendMessage("UpdateInputAxis", axis);
+		hand.SendMessage("UpdateObjectRotation", GetTorsoRotationState());
 	}
 
 }

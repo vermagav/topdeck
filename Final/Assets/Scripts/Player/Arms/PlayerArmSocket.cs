@@ -61,6 +61,15 @@ public class PlayerArmSocket : MonoBehaviour {
 		}
 	}
 
+	public void SetTorsoRotationChange(Quaternion torsoRotation)
+	{
+		if (currentArm != null)
+		{
+			currentArm.SendMessage ("SetTorsoRotationState", torsoRotation);
+
+		}
+	}
+
 	void SetupArm()
 	{
 		if (currentArm != null)
