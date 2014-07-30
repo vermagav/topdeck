@@ -88,4 +88,9 @@ public class LookAtControllerYRotation : MonoBehaviour {
 		if(v.magnitude != 0f)
 			targetVelocity = v;
 	}
+
+	public Vector3 GetTargetVelocity()
+	{
+		return targetVelocity;
+	}
 }

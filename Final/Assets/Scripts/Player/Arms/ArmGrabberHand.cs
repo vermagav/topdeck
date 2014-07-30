@@ -25,7 +25,9 @@ public class ArmGrabberHand : BaseRobotHand {
 	void FixedUpdate () {
 		if (itemHeld != null)
 		{
+			//HACK: Such a hack
 			itemHeld.RotateItemWithBody(GetTorsoRotationState());
+			itemHeld.MoveItemWithBody(GetTorsoVelocityChange());
 		}
 	}
 

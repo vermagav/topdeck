@@ -39,6 +39,7 @@ public class ArmGrabber : BaseRobotArm {
 	{
 		hand.SendMessage("UpdateInputAxis", axis);
 		hand.SendMessage("UpdateObjectRotation", GetTorsoRotationState());
+		hand.SendMessage("UpdateObjectPosition", GetTorsoVelocityChange());
 	}
 
 }
