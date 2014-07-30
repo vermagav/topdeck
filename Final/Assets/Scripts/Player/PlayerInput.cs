@@ -47,24 +47,33 @@ public class PlayerInput : MonoBehaviour {
 		if (!GamePadPresent)
 			return;
 
+
 		float bias = 0.5f;
 
 		//now check inputs and assign them
 
 		//Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-		playerMovement.SetTargetVelocity(new Vector3(Gamepad.LeftStick.X * bias, 0, Gamepad.LeftStick.Y * bias));
+		Vector3 movementDirection = new Vector3(Gamepad.LeftStick.X, 0, Gamepad.LeftStick.Y) * bias;
+		Vector3 torsoRotation = new Vector3(Gamepad.RightStick.X, 0, Gamepad.RightStick.Y);
+
+		playerMovement.SendMessage ("UpdateVelocity", movementDirection);
+
+		//playerMovement.SetTargetVelocity(new Vector3(Gamepad.LeftStick.X * bias, 0, Gamepad.LeftStick.Y * bias));
 
 		//Vector3 point = new Vector3 (Input.GetAxis ("LookHorizontal"), 0f, Input.GetAxis ("LookVertical"));
 
-		lookAtControllerYRotation.SetPoint(new Vector3(Gamepad.RightStick.X, 0, Gamepad.RightStick.Y));
-		lookAtControllerYRotation.SetTargetVelocity(new Vector3(Gamepad.LeftStick.X * bias, 0, Gamepad.LeftStick.Y * bias));
+		lookAtControllerYRotation.SendMessage ("UpdateVelocity", movementDirection);
+		lookAtControllerYRotation.SendMessage ("UpdateTorsoRotation", torsoRotation);
 
+		//lookAtControllerYRotation.SetTargetVelocity(new Vector3(Gamepad.LeftStick.X * bias, 0, Gamepad.LeftStick.Y * bias));
+		//lookAtControllerYRotation.SetPoint(new Vector3(Gamepad.RightStick.X, 0, Gamepad.RightStick.Y));
 
 		//Input.GetButton("Fire2")
 
 		arm.SendMessage("SetArmState", Gamepad.RightBumper.State, SendMessageOptions.DontRequireReceiver);
 		arm.SendMessage("SetArmAxis", Gamepad.RightTrigger.Value, SendMessageOptions.DontRequireReceiver);
+		arm.SendMessage("SetTorsoRotationChange", lookAtControllerYRotation.GetLookRotationDelta());
 	}
 
 	/// <summary>

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class GrabbableItem : MonoBehaviour {
 
+	Vector3 rotationOnGrab;
+
 	ObjectHighlights feedbackHighlights;
 	bool feedbackPresent { get { return feedbackHighlights != null; } }
 
@@ -27,9 +29,9 @@ public class GrabbableItem : MonoBehaviour {
 	public void GrabItem(Rigidbody grabPoint)
 	{
 		//TODO: Objects should collide with player instead of passing through
-
 		gameObject.layer = LayerMask.NameToLayer("Player");
-		rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+		rotationOnGrab = transform.localEulerAngles;
+		rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 		joint = gameObject.AddComponent<FixedJoint>();
 		joint.connectedBody = grabPoint;
 		if (feedbackPresent)
@@ -50,5 +52,13 @@ public class GrabbableItem : MonoBehaviour {
 		rigidbody.constraints = RigidbodyConstraints.None;
 		if (feedbackPresent)
 			feedbackHighlights.SetHighlight(false, 0);
+	}
+
+	public void RotateItemWithBody(Quaternion rotation)
+	{
+		rigidbody.AddTorque (rotation.eulerAngles);
+		//transform.localEulerAngles = rotation.eulerAngles + rotationOnGrab;
+		//rigidbody.isKinematic = false;
+
 	}
 }

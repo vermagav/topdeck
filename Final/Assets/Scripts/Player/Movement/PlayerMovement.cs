@@ -55,6 +55,11 @@ public class PlayerMovement : MonoBehaviour {
 		groundNormal = Vector3.zero;
 	}
 
+	void UpdateVelocity(Vector3 movementDirection)
+	{
+		SetTargetVelocity(movementDirection);
+	}
+
 	void OnCollisionEnter(Collision collision) {
 		if (currentCollisionBodyID != collision.gameObject.GetInstanceID())
 		{

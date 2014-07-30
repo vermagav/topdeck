@@ -3,6 +3,9 @@ using System.Collections;
 
 public class LookAtControllerYRotation : MonoBehaviour {
 
+	Quaternion lookRotation;
+	Quaternion lookRotationDelta;
+
 	private Vector3 point = new Vector3();
 	private Vector3 targetVelocity = Vector3.forward;
 
@@ -13,10 +16,15 @@ public class LookAtControllerYRotation : MonoBehaviour {
 
 	void FixedUpdate()
 	{
+		RotateTorso();
+	}
+
+	void RotateTorso()
+	{
 		//Debug.Log (Input.GetAxis ("LookHorizontal"));
-
+		
 		Quaternion newLookRotation;
-
+		
 		if(point.magnitude == 0f)
 		{
 			newLookRotation = Quaternion.LookRotation(targetVelocity);
@@ -39,11 +47,35 @@ public class LookAtControllerYRotation : MonoBehaviour {
 			newSpring.targetPosition = newLookRotation.eulerAngles.z;
 		}
 		hingeJoint.spring = newSpring;
-
+		
 		//newLookRotation = Quaternion.RotateTowards(transform.parent.rotation, newLookRotation, lookAngle);
 		
 		//transform.rotation = Quaternion.Lerp (transform.rotation, newLookRotation, rotationSpeed);
 
+		//http://answers.unity3d.com/questions/35541/problem-finding-relative-rotation-from-one-quatern.html
+		lookRotationDelta = Quaternion.Inverse(lookRotation) * newLookRotation;
+		lookRotation = newLookRotation;
+
+	}
+
+	void UpdateVelocity(Vector3 movementDirection)
+	{
+		SetTargetVelocity(movementDirection);
+	}
+
+	void UpdateTorsoRotation(Vector3 rotateDirection)
+	{
+		SetPoint (rotateDirection);
+	}
+
+	public Quaternion GetLookRotation()
+	{
+		return lookRotation;
+	}
+
+	public Quaternion GetLookRotationDelta()
+	{
+		return lookRotationDelta;
 	}
 
 	public void SetPoint(Vector3 p)
