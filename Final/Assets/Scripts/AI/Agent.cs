@@ -20,7 +20,6 @@ public class Agent : MonoBehaviour {
 	public GameObject pacifyObject; // TODO: remove if we go with tone sequence
 	public int chaseDistanceThreshold;
 	public int caughtPlayerDistanceThreshold;
-	public LineRenderer debugLine;
 	public PlayerMovement playerMovement;
 
 	public AudioClip soundAlert;
@@ -122,7 +121,7 @@ public class Agent : MonoBehaviour {
 			MoveAgent( player.transform.position );
 			if ( Vector3.Distance(this.transform.position, player.transform.position) <= caughtPlayerDistanceThreshold ) {
 				if(CanAttack()) {
-					player.rigidbody.AddForce((pushEntrance.position - player.transform.position) * 30, ForceMode.Impulse);
+					player.rigidbody.AddForce((pushEntrance.position - player.transform.position) * 60, ForceMode.Impulse);
 					Transition(FSM.Trigger.EnemyDisappeared);
 					return;
 				}
@@ -168,11 +167,7 @@ public class Agent : MonoBehaviour {
 			const float interceptDistance = 0.5f;
 			newDestination += (player.transform.forward + playerMovement.GetTargetVelocity()) * interceptDistance;
 		}
-		
-		// Render line in game view to see agent target
-		debugLine.SetPosition(0, this.transform.position);
-		debugLine.SetPosition(1, newDestination);
-		
+
 		// Move navMeshAgent
 		navMeshAgent.SetDestination (newDestination);
 	}

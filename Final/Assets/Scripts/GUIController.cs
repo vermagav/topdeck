@@ -10,7 +10,7 @@ public class GUIController : MonoBehaviour {
 	public bool fadingIn;
 	private Color color;
 
-	private string[] message = {"<size=15>ROOM 1:</size>\n<size=30>REBIRTH</size>", "<size=15>ROOM 2:</size>\n<size=30>CONSTRUCTION</size>", "<size=15>ROOM 3:</size>\n<size=30>INTRUDER</size>", "<size=15>ROOM 4:</size>\n<size=30>FINALE: To be revealed July 31st...</size>"};
+	private string[] message = {"<size=15>Chapter 1:</size>\n<size=30>REBIRTH</size>", "<size=15>ROOM 2:</size>\n<size=30>CONSTRUCTION</size>", "<size=15>ROOM 3:</size>\n<size=30>INTRUDER</size>", "<size=15>ROOM 4:</size>\n<size=30>FINALE: To be revealed July 31st...</size>"};
 
 	public void showBanner(int banner)
 	{

@@ -1,0 +1,266 @@
+fileFormatVersion: 2
+guid: 083bdff76487f42b2b6b58c114b21694
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: _3D_Man_Resting_Up
+    100002: group_0
+    100004: group_1
+    100006: group_2
+    100008: group_3
+    100010: ID101
+    100012: ID111
+    100014: ID137
+    100016: ID159
+    100018: ID167
+    100020: ID175
+    100022: ID183
+    100024: ID191
+    100026: ID199
+    100028: ID217
+    100030: ID59
+    100032: ID69
+    100034: ID81
+    100036: ID91
+    100038: instance_0
+    100040: instance_1
+    100042: instance_10
+    100044: instance_11
+    100046: instance_12
+    100048: instance_13
+    100050: instance_14
+    100052: instance_2
+    100054: instance_3
+    100056: instance_4
+    100058: instance_5
+    100060: instance_6
+    100062: instance_7
+    100064: instance_8
+    100066: instance_9
+    100068: Operating_Table
+    100070: Operating_Table 1
+    100072: //RootNode
+    100074: Pin_BO-PP-25_m6__-_Art._No.__035001
+    100076: Pin_BO-PP-25_m6__-_Art._No.__035001 1
+    100078: Pin_BO-PP-25_m6__-_Art._No.__035001 10
+    100080: Pin_BO-PP-25_m6__-_Art._No.__035001 11
+    100082: Pin_BO-PP-25_m6__-_Art._No.__035001 2
+    100084: Pin_BO-PP-25_m6__-_Art._No.__035001 3
+    100086: Pin_BO-PP-25_m6__-_Art._No.__035001 4
+    100088: Pin_BO-PP-25_m6__-_Art._No.__035001 5
+    100090: Pin_BO-PP-25_m6__-_Art._No.__035001 6
+    100092: Pin_BO-PP-25_m6__-_Art._No.__035001 7
+    100094: Pin_BO-PP-25_m6__-_Art._No.__035001 8
+    100096: Pin_BO-PP-25_m6__-_Art._No.__035001 9
+    100098: ske40D
+    100100: ske40D 1
+    100102: ske40D 10
+    100104: ske40D 11
+    100106: ske40D 2
+    100108: ske40D 3
+    100110: ske40D 4
+    100112: ske40D 5
+    100114: ske40D 6
+    100116: ske40D 7
+    100118: ske40D 8
+    100120: ske40D 9
+    400000: _3D_Man_Resting_Up
+    400002: group_0
+    400004: group_1
+    400006: group_2
+    400008: group_3
+    400010: ID101
+    400012: ID111
+    400014: ID137
+    400016: ID159
+    400018: ID167
+    400020: ID175
+    400022: ID183
+    400024: ID191
+    400026: ID199
+    400028: ID217
+    400030: ID59
+    400032: ID69
+    400034: ID81
+    400036: ID91
+    400038: instance_0
+    400040: instance_1
+    400042: instance_10
+    400044: instance_11
+    400046: instance_12
+    400048: instance_13
+    400050: instance_14
+    400052: instance_2
+    400054: instance_3
+    400056: instance_4
+    400058: instance_5
+    400060: instance_6
+    400062: instance_7
+    400064: instance_8
+    400066: instance_9
+    400068: Operating_Table
+    400070: Operating_Table 1
+    400072: //RootNode
+    400074: Pin_BO-PP-25_m6__-_Art._No.__035001
+    400076: Pin_BO-PP-25_m6__-_Art._No.__035001 1
+    400078: Pin_BO-PP-25_m6__-_Art._No.__035001 10
+    400080: Pin_BO-PP-25_m6__-_Art._No.__035001 11
+    400082: Pin_BO-PP-25_m6__-_Art._No.__035001 2
+    400084: Pin_BO-PP-25_m6__-_Art._No.__035001 3
+    400086: Pin_BO-PP-25_m6__-_Art._No.__035001 4
+    400088: Pin_BO-PP-25_m6__-_Art._No.__035001 5
+    400090: Pin_BO-PP-25_m6__-_Art._No.__035001 6
+    400092: Pin_BO-PP-25_m6__-_Art._No.__035001 7
+    400094: Pin_BO-PP-25_m6__-_Art._No.__035001 8
+    400096: Pin_BO-PP-25_m6__-_Art._No.__035001 9
+    400098: ske40D
+    400100: ske40D 1
+    400102: ske40D 10
+    400104: ske40D 11
+    400106: ske40D 2
+    400108: ske40D 3
+    400110: ske40D 4
+    400112: ske40D 5
+    400114: ske40D 6
+    400116: ske40D 7
+    400118: ske40D 8
+    400120: ske40D 9
+    2300000: _3D_Man_Resting_Up
+    2300002: group_0
+    2300004: group_1
+    2300006: group_2
+    2300008: group_3
+    2300010: ID101
+    2300012: ID111
+    2300014: ID137
+    2300016: ID159
+    2300018: ID167
+    2300020: ID175
+    2300022: ID183
+    2300024: ID191
+    2300026: ID199
+    2300028: ID217
+    2300030: ID59
+    2300032: ID69
+    2300034: ID81
+    2300036: ID91
+    2300038: Operating_Table 1
+    2300040: Pin_BO-PP-25_m6__-_Art._No.__035001
+    2300042: Pin_BO-PP-25_m6__-_Art._No.__035001 1
+    2300044: Pin_BO-PP-25_m6__-_Art._No.__035001 10
+    2300046: Pin_BO-PP-25_m6__-_Art._No.__035001 11
+    2300048: Pin_BO-PP-25_m6__-_Art._No.__035001 2
+    2300050: Pin_BO-PP-25_m6__-_Art._No.__035001 3
+    2300052: Pin_BO-PP-25_m6__-_Art._No.__035001 4
+    2300054: Pin_BO-PP-25_m6__-_Art._No.__035001 5
+    2300056: Pin_BO-PP-25_m6__-_Art._No.__035001 6
+    2300058: Pin_BO-PP-25_m6__-_Art._No.__035001 7
+    2300060: Pin_BO-PP-25_m6__-_Art._No.__035001 8
+    2300062: Pin_BO-PP-25_m6__-_Art._No.__035001 9
+    3300000: _3D_Man_Resting_Up
+    3300002: group_0
+    3300004: group_1
+    3300006: group_2
+    3300008: group_3
+    3300010: ID101
+    3300012: ID111
+    3300014: ID137
+    3300016: ID159
+    3300018: ID167
+    3300020: ID175
+    3300022: ID183
+    3300024: ID191
+    3300026: ID199
+    3300028: ID217
+    3300030: ID59
+    3300032: ID69
+    3300034: ID81
+    3300036: ID91
+    3300038: Operating_Table 1
+    3300040: Pin_BO-PP-25_m6__-_Art._No.__035001
+    3300042: Pin_BO-PP-25_m6__-_Art._No.__035001 1
+    3300044: Pin_BO-PP-25_m6__-_Art._No.__035001 10
+    3300046: Pin_BO-PP-25_m6__-_Art._No.__035001 11
+    3300048: Pin_BO-PP-25_m6__-_Art._No.__035001 2
+    3300050: Pin_BO-PP-25_m6__-_Art._No.__035001 3
+    3300052: Pin_BO-PP-25_m6__-_Art._No.__035001 4
+    3300054: Pin_BO-PP-25_m6__-_Art._No.__035001 5
+    3300056: Pin_BO-PP-25_m6__-_Art._No.__035001 6
+    3300058: Pin_BO-PP-25_m6__-_Art._No.__035001 7
+    3300060: Pin_BO-PP-25_m6__-_Art._No.__035001 8
+    3300062: Pin_BO-PP-25_m6__-_Art._No.__035001 9
+    4300000: Operating_Table
+    4300002: ID217
+    4300004: group_0
+    4300006: group_1
+    4300008: ID59
+    4300010: ID69
+    4300012: ID81
+    4300014: ID91
+    4300016: ID101
+    4300018: ID111
+    4300020: Pin_BO-PP-25_m6__-_Art._No.__035001
+    4300022: group_2
+    4300024: group_3
+    4300026: ID137
+    4300028: _3D_Man_Resting_Up
+    4300030: ID159
+    4300032: ID167
+    4300034: ID175
+    4300036: ID183
+    4300038: ID191
+    4300040: ID199
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .100000001
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
