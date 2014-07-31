@@ -6,6 +6,7 @@ public class ArmTractorBeamView : BaseRobotHand {
 	public GameObject beamSource;
 	public LightningBolt lightning;
 	ParticleRenderer particleRenderer;
+	public Transform defaultArc;
 
 	[Range (0, 1)]
 	public float pulseAmount;
@@ -47,6 +48,17 @@ public class ArmTractorBeamView : BaseRobotHand {
 		if (lightning)
 		{
 			lightning.target = target;
+		}
+	}
+
+	void SetDefaultTarget(Transform alternativeTarget)
+	{
+		if (lightning)
+		{
+			if (defaultArc)
+				lightning.target = defaultArc;
+			else
+				lightning.target = alternativeTarget;
 		}
 	}
 }

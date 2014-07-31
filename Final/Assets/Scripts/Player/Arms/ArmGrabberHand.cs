@@ -58,7 +58,7 @@ public class ArmGrabberHand : BaseRobotHand {
 			{
 				currentCollectableInRange.SetOutlineFeedback(false);
 				if (item != itemHeld)
-					SendMessage("SetTarget", grabPoint.transform, SendMessageOptions.DontRequireReceiver);
+					SendMessage("SetDefaultTarget", grabPoint.transform, SendMessageOptions.DontRequireReceiver);
 				currentCollectableInRange = null;
 			}
 		}
@@ -72,7 +72,7 @@ public class ArmGrabberHand : BaseRobotHand {
 			if (itemHeld != null)
 			{
 				itemHeld.ReleaseItem();
-				SendMessage("SetTarget", grabPoint.transform, SendMessageOptions.DontRequireReceiver);
+				SendMessage("SetDefaultTarget", grabPoint.transform, SendMessageOptions.DontRequireReceiver);
 				itemHeld = null;
 			}
 			grabPoint.SetActive (false);
