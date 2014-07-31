@@ -48,7 +48,7 @@ public class PlayerInput : MonoBehaviour {
 			return;
 
 
-		float bias = 0.5f;
+		float bias = 1;//0.5f;
 
 		//now check inputs and assign them
 
