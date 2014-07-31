@@ -17,7 +17,7 @@ public class Agent : MonoBehaviour {
 	private int nextWaypoint;
 	
 	public GameObject player;
-	public GameObject pacifyObject; // TODO: remove if we go with tone sequence
+	public GameObject pacifyObject;
 	public int chaseDistanceThreshold;
 	public int caughtPlayerDistanceThreshold;
 	public PlayerMovement playerMovement;
@@ -166,7 +166,6 @@ public class Agent : MonoBehaviour {
 			break;
 
 		case FSM.State.Pacified:
-			// TODO: temporary box condition for alpha
 			MoveAgent( pacifyObject.transform.position );
 			if (Vector3.Distance (this.transform.position, pacifyObject.transform.position) <= caughtPlayerDistanceThreshold) {
 				navMeshAgent.Stop (true);

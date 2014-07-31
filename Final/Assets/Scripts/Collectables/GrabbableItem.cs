@@ -18,6 +18,12 @@ public class GrabbableItem : MonoBehaviour {
 
 	public bool movementDampened = false;
 
+	private bool isGrabbale = true;
+
+	void SetGrabbable(bool flag) {
+		isGrabbale = flag;
+	}
+
 	// Use this for initialization
 	void Start () {
 		//joint = gameObject.AddComponent<FixedJoint>();
@@ -64,6 +70,10 @@ public class GrabbableItem : MonoBehaviour {
 
 	public void GrabItem(Rigidbody grabPoint)
 	{
+		if(!isGrabbale) {
+			return;
+		}
+
 		//TODO: Objects should collide with player instead of passing through
 		//gameObject.layer = LayerMask.NameToLayer("Player");
 		gameObject.layer = LayerMask.NameToLayer("Interactable");
