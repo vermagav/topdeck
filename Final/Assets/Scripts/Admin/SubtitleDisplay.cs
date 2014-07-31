@@ -25,7 +25,7 @@ public class SubtitleDisplay : MonoBehaviour {
 	}
 
 	void Start() {
-		Test ();
+		//Test ();
 	}
 	
 	// Update is called once per frame
