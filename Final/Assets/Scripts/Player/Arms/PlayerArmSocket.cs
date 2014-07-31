@@ -66,7 +66,6 @@ public class PlayerArmSocket : MonoBehaviour {
 		if (currentArm != null)
 		{
 			currentArm.SendMessage ("SetTorsoRotationState", torsoRotation);
-
 		}
 	}
 

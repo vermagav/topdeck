@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour {
 	private CollisionData collisionData;
 	private Vector3 XZplane;
 
+	private Vector3 forceApplied;
+
 	void Awake()
 	{
 		groundNormal = Vector3.zero;
@@ -32,21 +34,23 @@ public class PlayerMovement : MonoBehaviour {
 			targetVelocity *= maxVelocity * movementRate;
 
 			//targetVelocity = transform.TransformDirection(targetVelocity);
+
+			forceApplied = Vector3.zero;
+
 			if((targetVelocity - rigidbody.velocity).magnitude > 1f)
 			{
-				Vector3 force = Vector3.zero;
-				force = Vector3.Scale((targetVelocity - rigidbody.velocity), XZplane);
+				forceApplied = Vector3.Scale((targetVelocity - rigidbody.velocity), XZplane);
 
-				if(force.magnitude < 0.1f)
+				if(forceApplied.magnitude < 0.1f)
 					return;
 
-				force = force / force.magnitude * maxForce * movementRate;
+				forceApplied = forceApplied / forceApplied.magnitude * maxForce * movementRate;
 
-				force *= Vector3.Dot(groundNormal, Vector3.up);
+				forceApplied *= Vector3.Dot(groundNormal, Vector3.up);
 
-				force =  Quaternion.AngleAxis(90f - Vector3.Angle(force, groundNormal), Vector3.Cross(groundNormal, force)) * force;
+				forceApplied =  Quaternion.AngleAxis(90f - Vector3.Angle(forceApplied, groundNormal), Vector3.Cross(groundNormal, forceApplied)) * forceApplied;
 
-				rigidbody.AddForce(force);
+				rigidbody.AddForce(forceApplied);
 			}
 		}
 
@@ -141,6 +145,11 @@ public class PlayerMovement : MonoBehaviour {
 	public Vector3 GetTargetVelocity() 
 	{
 		return targetVelocity;
+	}
+
+	public Vector3 GetMovementForce()
+	{
+		return forceApplied;
 	}
 
 }

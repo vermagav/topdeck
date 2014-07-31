@@ -2,8 +2,12 @@
 using System.Collections;
 
 public class GrabbableItem : MonoBehaviour {
+	//change these to alter the hover force
+	//TODO: Put the hover functionality in a separate component
+	float hoverForce = 15;
+	float hoverDistance = 15;
 
-	public float timeToFreezeRotationOnGrab = 0.01f;
+	float timeToFreezeRotationOnGrab = 1f;
 	Vector3 rotationOnGrab;
 
 	ObjectHighlights feedbackHighlights;
@@ -12,10 +16,13 @@ public class GrabbableItem : MonoBehaviour {
 	//experiment with different types of joints here
 	FixedJoint joint = null;
 
+	public bool movementDampened = false;
+
 	// Use this for initialization
 	void Start () {
 		//joint = gameObject.AddComponent<FixedJoint>();
 		gameObject.tag = "Collectable";
+		gameObject.layer = LayerMask.NameToLayer("Default");
 		feedbackHighlights = GetComponent<ObjectHighlights>();
 
 		if (!feedbackPresent)
@@ -27,19 +34,45 @@ public class GrabbableItem : MonoBehaviour {
 	void FixedUpdate () {
 		if (joint != null)
 		{
+			if (movementDampened && rigidbody.angularVelocity.magnitude < 0.1f)
+			{
+				rigidbody.angularVelocity = new Vector3(0, 0, 0);
+				movementDampened = false;
+			}
+			HoverItem ();
 
 			//Debug.DrawRay(joint.transform.position, joint.connectedBody.transform.position, Color.green, (1/30f), false);
 		}
 	
 	}
 
+	void HoverItem () {
+		RaycastHit hit;
+		if (Physics.Raycast(transform.position, Vector3.down, out hit, hoverDistance))
+		{
+			rigidbody.AddForce(Vector3.up * hoverForce);
+			if (hit.collider.tag == "Ground")
+			{
+
+			}
+		} 
+		else 
+		{
+			//rigidbody.AddForce(Vector3.down * hoverForce);
+		}
+	}
+
 	public void GrabItem(Rigidbody grabPoint)
 	{
 		//TODO: Objects should collide with player instead of passing through
-		gameObject.layer = LayerMask.NameToLayer("Player");
+		//gameObject.layer = LayerMask.NameToLayer("Player");
+		gameObject.layer = LayerMask.NameToLayer("Interactable");
 		rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
 		//rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+		rigidbody.isKinematic = true;
+		transform.localEulerAngles = new Vector3(0, 0, 0);
 		rotationOnGrab = transform.localEulerAngles;
+		rigidbody.isKinematic = false;
 		FreezeRotation();
 		joint = gameObject.AddComponent<FixedJoint>();
 		joint.connectedBody = grabPoint;
@@ -81,8 +114,8 @@ public class GrabbableItem : MonoBehaviour {
 	public void RotateItemWithBody(Quaternion rotation)
 	{
 		//if we aren't rotating, we don't need to add any more torque
-		//if (rotation.eulerAngles.magnitude < 1)
-			//return;
+		if (rotation.eulerAngles.magnitude < 1)
+			return;
 
 		//unlock y rotation for the object and spin it in the direction fo player body movement
 		AllowRotationY();
@@ -98,14 +131,19 @@ public class GrabbableItem : MonoBehaviour {
 		//rigidbody.isKinematic = false;
 	}
 
+
 	public void FreezeRotation()
 	{
-		rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+		//rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+		rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+		movementDampened = true;
 	}
 
 	public void AllowRotationY()
 	{
-		rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+		//rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+		rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+		movementDampened = false;
 	}
 
 }
