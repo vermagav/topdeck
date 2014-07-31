@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			forceApplied = Vector3.zero;
 
-			if((targetVelocity - rigidbody.velocity).magnitude > 1f)
+			if(rigidbody != null && (targetVelocity - rigidbody.velocity).magnitude > 1f)
 			{
 				forceApplied = Vector3.Scale((targetVelocity - rigidbody.velocity), XZplane);
 

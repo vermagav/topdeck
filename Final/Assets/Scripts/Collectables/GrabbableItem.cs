@@ -18,10 +18,10 @@ public class GrabbableItem : MonoBehaviour {
 
 	public bool movementDampened = false;
 
-	private bool isGrabbale = true;
+	private bool isGrabbable = true;
 
 	public void SetGrabbable(bool flag) {
-		isGrabbale = flag;
+		isGrabbable = flag;
 		Debug.Log ("Box set to not grabbable");
 	}
 
@@ -71,7 +71,7 @@ public class GrabbableItem : MonoBehaviour {
 
 	public void GrabItem(Rigidbody grabPoint)
 	{
-		if(!isGrabbale) {
+		if(!isGrabbable) {
 			Debug.Log ("Could not grab!");
 			return;
 		}
@@ -86,6 +86,8 @@ public class GrabbableItem : MonoBehaviour {
 		rotationOnGrab = transform.localEulerAngles;
 		rigidbody.isKinematic = false;
 		FreezeRotation();
+		if (joint != null)
+			Destroy (joint);
 		joint = gameObject.AddComponent<FixedJoint>();
 		joint.connectedBody = grabPoint;
 		if (feedbackPresent)
