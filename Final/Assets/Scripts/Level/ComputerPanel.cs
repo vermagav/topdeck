@@ -20,7 +20,7 @@ public class ComputerPanel : MonoBehaviour {
 		audio.PlayOneShot (voiceOver_1);
 
 		// Show subtitles
-		SubtitleManager.Instance.AddSubtitle ("Computer Systems are now powered up.", 1.0f);
+		SubtitleManager.Instance.AddSubtitle ("Computer Systems are now powered up.", 2.0f);
 		SubtitleManager.Instance.Play ();
 
 		// Turn on computer screen
