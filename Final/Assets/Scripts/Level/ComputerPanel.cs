@@ -19,6 +19,11 @@ public class ComputerPanel : MonoBehaviour {
 		// Play power up sound
 		audio.PlayOneShot (voiceOver_1);
 
+		// Show subtitles
+		SubtitleManager.Instance.Stop ();
+		SubtitleManager.Instance.AddSubtitle ("Computer Systems are now powered up.", 2.0f);
+		SubtitleManager.Instance.Play ();
+
 		// Turn on computer screen
 		computerScreen.TurnOnScreen ();
 	}
@@ -33,6 +38,11 @@ public class ComputerPanel : MonoBehaviour {
 
 		// Play identification audio
 		audio.PlayOneShot (voiceOver_2);
+
+		// Show subtitles
+		SubtitleManager.Instance.Stop ();
+		SubtitleManager.Instance.AddSubtitle ("User identified as Ben. Please proceed.", 2.0f);
+		SubtitleManager.Instance.Play ();
 
 		isActive = true;
 	}
