@@ -12,6 +12,7 @@ public class SubtitleDisplay : MonoBehaviour {
 	bool subtitlesDisplayed = false;
 	Color defaultTextColor;
 	Color subtitleTextColor;
+	Color backgroundTextureColor;
 	float fadeSpeed = 0.2f;
 	float fadeStatus = 0;
 	List<Subtitle> subtitles;
@@ -20,7 +21,8 @@ public class SubtitleDisplay : MonoBehaviour {
 	void Awake () {
 		subtitles = new List<Subtitle>();
 		ClearSubtitles();
-		defaultTextColor = gameObject.guiText.color;
+		defaultTextColor = guiText.color;
+		backgroundTextureColor = guiTexture.color;
 		subtitleTextColor = defaultTextColor;
 	}
 
@@ -39,12 +41,14 @@ public class SubtitleDisplay : MonoBehaviour {
 			//fade subtitles in
 			fadeStatus = (Time.timeSinceLevelLoad - lastSubtitleBegin) / fadeSpeed;
 			guiText.color = Color.Lerp(Color.clear, subtitleTextColor, fadeStatus);
+			guiTexture.color = Color.Lerp(Color.clear, backgroundTextureColor, fadeStatus);
 		}
 		else
 		{
 			//fade subtitles out
 			fadeStatus = (Time.timeSinceLevelLoad - lastSubtitleEnd) / fadeSpeed;
 			guiText.color = Color.Lerp(subtitleTextColor, Color.clear, fadeStatus);
+			guiTexture.color = Color.Lerp(backgroundTextureColor, Color.clear, fadeStatus);
 			if (fadeStatus > 1)
 			{
 				AdvanceSubtitles();
@@ -96,6 +100,15 @@ public class SubtitleDisplay : MonoBehaviour {
 		else
 			subtitleTextColor = sub.color;
 		gameObject.guiText.text = text;
+
+		//http://answers.unity3d.com/questions/27818/positioning-guilabel-behind-guitext.html
+		Rect r =  guiText.GetScreenRect();
+		Rect textureRect = new Rect(0, -Screen.height / 2 + guiText.fontSize, Screen.width, guiText.fontSize);
+		guiTexture.pixelInset = textureRect;
+		//guiTexture.pixelInset.width = r.width;
+		//guiTexture.pixelInset.height = r.height;
+		//guiTexture.pixelInset.y = -r.height;
+
 		lastSubtitleBegin = Time.timeSinceLevelLoad;
 		lastSubtitleEnd = lastSubtitleBegin + sub.length;
 		subtitlesDisplayed = true;
