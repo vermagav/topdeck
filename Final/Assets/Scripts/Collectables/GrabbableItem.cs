@@ -69,6 +69,10 @@ public class GrabbableItem : MonoBehaviour {
 		}
 	}
 
+	void OnDestroy () {
+		SetOutlineFeedback(false);
+	}
+
 	public void GrabItem(Rigidbody grabPoint)
 	{
 		if(!isGrabbable) {
