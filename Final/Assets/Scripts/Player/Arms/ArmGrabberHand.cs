@@ -53,6 +53,8 @@ public class ArmGrabberHand : BaseRobotHand {
 		{
 			//Debug.LogError ("Trigger Exit");
 			GrabbableItem item = col.GetComponent<GrabbableItem>();
+			if (item == null)
+				return;
 
 			if (item == currentCollectableInRange)
 			{

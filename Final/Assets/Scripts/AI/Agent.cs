@@ -172,10 +172,14 @@ public class Agent : MonoBehaviour {
 			MoveAgent( pacifyObject.transform.position );
 			if (Vector3.Distance (this.transform.position, pacifyObject.transform.position) <= caughtPlayerDistanceThreshold) {
 				navMeshAgent.Stop (true);
-				grabbableItem.SetGrabbable(false);
-				grabbableItem.ReleaseItem();
-				pacifyObject.rigidbody.isKinematic = true;
-				Destroy (grabbableItem);
+				if (grabbableItem != null)
+				{
+					grabbableItem.SetGrabbable(false);
+					grabbableItem.ReleaseItem();
+					pacifyObject.rigidbody.isKinematic = true;
+					Destroy (grabbableItem);
+				}
+
 			}
 			if (!happySoundPlayed && !audio.isPlaying) {
 				audio.clip = soundHappy;
