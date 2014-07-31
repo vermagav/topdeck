@@ -4,12 +4,17 @@ using System.Collections;
 public class ArmTractorBeamView : BaseRobotHand {
 
 	public GameObject beamSource;
+	public LightningBolt lightning;
+	ParticleRenderer particleRenderer;
+	public Transform defaultArc;
 
 	[Range (0, 1)]
 	public float pulseAmount;
 
 	// Use this for initialization
 	void Start () {
+		if (lightning)
+			particleRenderer = lightning.GetComponent<ParticleRenderer>();
 
 	}
 	
@@ -22,6 +27,38 @@ public class ArmTractorBeamView : BaseRobotHand {
 	{
 		//update beam view here
 		pulseAmount = axis;
-		beamSource.light.intensity = pulseAmount * 4;
+		if (beamSource)
+			beamSource.light.intensity = pulseAmount * 4;
+		if (lightning)
+		{
+			if (lightning.target.CompareTag("Collectable"))
+			{
+				particleRenderer.maxParticleSize = 0.01f + (0.02f * pulseAmount);
+			}
+			else
+			{
+				particleRenderer.maxParticleSize = 0.01f * pulseAmount;
+			}
+		}
+
+	}
+
+	void SetTarget(Transform target)
+	{
+		if (lightning)
+		{
+			lightning.target = target;
+		}
+	}
+
+	void SetDefaultTarget(Transform alternativeTarget)
+	{
+		if (lightning)
+		{
+			if (defaultArc)
+				lightning.target = defaultArc;
+			else
+				lightning.target = alternativeTarget;
+		}
 	}
 }
