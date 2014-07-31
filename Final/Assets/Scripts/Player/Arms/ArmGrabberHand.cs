@@ -27,7 +27,6 @@ public class ArmGrabberHand : BaseRobotHand {
 		{
 			//HACK: Such a hack
 			itemHeld.RotateItemWithBody(GetTorsoRotationState());
-			itemHeld.MoveItemWithBody(GetTorsoVelocityChange());
 		}
 	}
 

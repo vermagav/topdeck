@@ -69,14 +69,6 @@ public class PlayerArmSocket : MonoBehaviour {
 		}
 	}
 
-	public void SetTorsoVelocityChange(Vector3 vel)
-	{
-		if (currentArm != null)
-		{
-			currentArm.SendMessage ("SetTorsoVelocityChange", vel);
-		}
-	}
-
 	void SetupArm()
 	{
 		if (currentArm != null)

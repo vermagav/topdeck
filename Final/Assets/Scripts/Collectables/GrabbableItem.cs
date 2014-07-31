@@ -2,6 +2,10 @@
 using System.Collections;
 
 public class GrabbableItem : MonoBehaviour {
+	//change these to alter the hover force
+	//TODO: Put the hover functionality in a separate component
+	float hoverForce = 15;
+	float hoverDistance = 15;
 
 	float timeToFreezeRotationOnGrab = 1f;
 	Vector3 rotationOnGrab;
@@ -35,10 +39,27 @@ public class GrabbableItem : MonoBehaviour {
 				rigidbody.angularVelocity = new Vector3(0, 0, 0);
 				movementDampened = false;
 			}
+			HoverItem ();
 
 			//Debug.DrawRay(joint.transform.position, joint.connectedBody.transform.position, Color.green, (1/30f), false);
 		}
 	
+	}
+
+	void HoverItem () {
+		RaycastHit hit;
+		if (Physics.Raycast(transform.position, Vector3.down, out hit, hoverDistance))
+		{
+			rigidbody.AddForce(Vector3.up * hoverForce);
+			if (hit.collider.tag == "Ground")
+			{
+
+			}
+		} 
+		else 
+		{
+			//rigidbody.AddForce(Vector3.down * hoverForce);
+		}
 	}
 
 	public void GrabItem(Rigidbody grabPoint)
@@ -48,7 +69,10 @@ public class GrabbableItem : MonoBehaviour {
 		gameObject.layer = LayerMask.NameToLayer("Interactable");
 		rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
 		//rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+		rigidbody.isKinematic = true;
+		transform.localEulerAngles = new Vector3(0, 0, 0);
 		rotationOnGrab = transform.localEulerAngles;
+		rigidbody.isKinematic = false;
 		FreezeRotation();
 		joint = gameObject.AddComponent<FixedJoint>();
 		joint.connectedBody = grabPoint;
@@ -107,23 +131,18 @@ public class GrabbableItem : MonoBehaviour {
 		//rigidbody.isKinematic = false;
 	}
 
-	public void MoveItemWithBody (Vector3 velocity)
-	{
-		rigidbody.AddForce(velocity);
-	}
-
 
 	public void FreezeRotation()
 	{
 		//rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-		//rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+		rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 		movementDampened = true;
 	}
 
 	public void AllowRotationY()
 	{
 		//rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-		//rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+		rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 		movementDampened = false;
 	}
 

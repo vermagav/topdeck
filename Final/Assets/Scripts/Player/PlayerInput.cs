@@ -74,7 +74,6 @@ public class PlayerInput : MonoBehaviour {
 		arm.SendMessage("SetArmState", Gamepad.RightBumper.State, SendMessageOptions.DontRequireReceiver);
 		arm.SendMessage("SetArmAxis", Gamepad.RightTrigger.Value, SendMessageOptions.DontRequireReceiver);
 		arm.SendMessage("SetTorsoRotationChange", lookAtControllerYRotation.GetLookRotationDelta());
-		arm.SendMessage("SetTorsoVelocityChange", playerMovement.GetMovementForce());
 	}
 
 	/// <summary>
