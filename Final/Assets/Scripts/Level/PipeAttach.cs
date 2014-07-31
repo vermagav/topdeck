@@ -15,7 +15,7 @@ public class PipeAttach : MonoBehaviour {
 		if(other.gameObject.Equals(targetPipe))
 		{
 			GetComponent<Animator>().SetBool("hasPipe", true);
-			other.gameObject.SetActive(false);
+			Destroy(other.gameObject);//.SetActive(false);
 			fenceController.setFenceUp(false);
 			AudioSource.PlayClipAtPoint(attachClip, transform.position);
 			AudioSource.PlayClipAtPoint(happyRobot, transform.position);

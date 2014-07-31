@@ -15,7 +15,7 @@ public class GearAttach : MonoBehaviour {
 		if(other.gameObject.Equals(targetGear))
 		{
 			GetComponent<Animator>().SetBool("hasCenterGear", true);
-			other.gameObject.SetActive(false);
+			Destroy(other.gameObject);//.SetActive(false);
 			animateDoor.OpenDoor ();
 			AudioSource.PlayClipAtPoint(attachClip, transform.position);
 			AudioSource.PlayClipAtPoint(happyRobot, transform.position);

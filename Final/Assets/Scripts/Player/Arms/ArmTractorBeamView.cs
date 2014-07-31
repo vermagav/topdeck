@@ -21,7 +21,15 @@ public class ArmTractorBeamView : BaseRobotHand {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+		//HACK: deals with issue of lightning traveling to disabled/destroyed objects in puzzles
+		if (lightning != null)
+		{
+			if (lightning.target == null)
+			{
+				SetDefaultTarget(defaultArc);
+			}
+		}
 	}
 
 	public override void UpdateInputAxis(float axis)
@@ -32,6 +40,8 @@ public class ArmTractorBeamView : BaseRobotHand {
 			beamSource.light.intensity = pulseAmount * 4;
 		if (lightning)
 		{
+			if (lightning.target == null)
+				return;
 			if (lightning.target.CompareTag("Collectable"))
 			{
 				lightningScale = 0.01f + (0.02f * pulseAmount);
