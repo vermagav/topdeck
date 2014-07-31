@@ -21,6 +21,7 @@ public class Agent : MonoBehaviour {
 	public int chaseDistanceThreshold;
 	public int caughtPlayerDistanceThreshold;
 	public PlayerMovement playerMovement;
+	public Light agentLight;
 
 	public AudioClip soundAlert;
 	public AudioClip soundLaugh;
@@ -36,7 +37,7 @@ public class Agent : MonoBehaviour {
 		navMeshAgent = GetComponent<NavMeshAgent> ();
 		
 		// Set default state to patrol
-		currentState = FSM.State.Patrol;
+		SwitchState(FSM.State.Patrol);
 		
 		// Set defaults
 		nextWaypoint = 0;
@@ -69,35 +70,56 @@ public class Agent : MonoBehaviour {
 		case FSM.State.Patrol:
 			if (trigger == FSM.Trigger.EnemySighted) {
 				// Enemy sighted, transition to chase mode
-				currentState = FSM.State.Chase;
+				SwitchState(FSM.State.Chase);
 			} else if (trigger == FSM.Trigger.PacifyCondition) {
-				currentState = FSM.State.Pacified;
+				SwitchState(FSM.State.Pacified);
 			}
 			break;
 			
 		case FSM.State.Chase:
 			if (trigger == FSM.Trigger.EnemyDisappeared) {
 				// Enemy disappeared, transition to return mode
-				currentState = FSM.State.Return;
+				SwitchState(FSM.State.Return);
 			} else if (trigger == FSM.Trigger.PacifyCondition) {
-				currentState = FSM.State.Pacified;
+				SwitchState(FSM.State.Pacified);
 			}
 			break;
 			
 		case FSM.State.Return:
 			if (trigger == FSM.Trigger.ReachedBase) {
 				// Reached base, transition to patrol mode
-				currentState = FSM.State.Patrol;
+				SwitchState(FSM.State.Patrol);
 			} else if (trigger == FSM.Trigger.EnemySighted) {
 				// Eneemy sighted, transition to chase mode
-				currentState = FSM.State.Chase;
+				SwitchState(FSM.State.Chase);
 			} else 	if (trigger == FSM.Trigger.PacifyCondition) {
-				currentState = FSM.State.Pacified;
+				SwitchState(FSM.State.Pacified);
 			}
 			break;
 
 		case FSM.State.Pacified:
 			// Once pacified, do nothing.
+			break;
+		};
+	}
+
+	void SwitchState(FSM.State newState) {
+		currentState = newState;
+		switch (currentState) {
+		case FSM.State.Patrol:
+			agentLight.color = Color.white;
+			break;
+			
+		case FSM.State.Chase:
+			agentLight.color = Color.red;
+			break;
+			
+		case FSM.State.Return:
+			agentLight.color = Color.white;
+			break;
+			
+		case FSM.State.Pacified:
+			agentLight.color = Color.magenta;
 			break;
 		};
 	}
