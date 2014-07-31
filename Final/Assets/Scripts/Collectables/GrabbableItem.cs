@@ -72,7 +72,7 @@ public class GrabbableItem : MonoBehaviour {
 
 	void OnDestroy () {
 		SetOutlineFeedback(false);
-		gameObject.tag = "Default";
+		gameObject.tag = "Untagged";
 	}
 
 	public void GrabItem(Rigidbody grabPoint)
