@@ -157,10 +157,13 @@ public class Agent : MonoBehaviour {
 				numReturnAfterAttacking++;
 				if(numReturnAfterAttacking % 2 == 1) {
 					audio.clip = soundLaugh;
+					SubtitleManager.Instance.AddSubtitle ("Ha. Ha.", 1.5f, Color.red);
 				} else {
 					audio.clip = soundLament;
+					SubtitleManager.Instance.AddSubtitle ("I wish I had a box.", 1.5f, Color.red);
 				}
-				audio.Play ();
+				audio.Play();
+				SubtitleManager.Instance.Play ();
 				Transition(FSM.Trigger.ReachedBase);
 			}
 			break;
@@ -178,6 +181,9 @@ public class Agent : MonoBehaviour {
 				audio.clip = soundHappy;
 				audio.Play();
 				happySoundPlayed = true;
+				SubtitleManager.Instance.Stop ();
+				SubtitleManager.Instance.AddSubtitle ("Oh my god. A box! <3", 2.0f, Color.magenta);
+				SubtitleManager.Instance.Play ();
 			}
 			break;
 		};
@@ -210,6 +216,10 @@ public class Agent : MonoBehaviour {
 			if(!audio.isPlaying) {
 				audio.clip = soundAlert;
 				audio.Play();
+				SubtitleManager.Instance.Stop ();
+				SubtitleManager.Instance.AddSubtitle ("Intruder Alert!", 1.0f, Color.red);
+				SubtitleManager.Instance.Play ();
+
 			}
 			Transition(FSM.Trigger.EnemySighted);
 		}
