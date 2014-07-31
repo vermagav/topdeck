@@ -1,0 +1,305 @@
+fileFormatVersion: 2
+guid: 6e2f5ab4560a54a80abf3a03c93b9687
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Component_1
+    100004: ID101
+    100006: ID101 1
+    100008: ID101 2
+    100010: ID101 3
+    100012: ID111
+    100014: ID111 1
+    100016: ID111 2
+    100018: ID111 3
+    100020: ID141
+    100022: ID151
+    100024: ID161
+    100026: ID181
+    100028: ID196
+    100030: ID206
+    100032: ID21
+    100034: ID21 1
+    100036: ID21 2
+    100038: ID21 3
+    100040: ID221
+    100042: ID31
+    100044: ID31 1
+    100046: ID31 2
+    100048: ID31 3
+    100050: ID41
+    100052: ID41 1
+    100054: ID41 2
+    100056: ID41 3
+    100058: ID51
+    100060: ID51 1
+    100062: ID51 2
+    100064: ID51 3
+    100066: ID61
+    100068: ID61 1
+    100070: ID61 2
+    100072: ID61 3
+    100074: ID71
+    100076: ID71 1
+    100078: ID71 2
+    100080: ID71 3
+    100082: ID81
+    100084: ID81 1
+    100086: ID81 2
+    100088: ID81 3
+    100090: ID91
+    100092: ID91 1
+    100094: ID91 2
+    100096: ID91 3
+    100098: instance_0
+    100100: instance_1
+    100102: instance_2
+    100104: instance_3
+    100106: instance_4
+    100108: instance_5
+    100110: l
+    100112: l 1
+    100114: l 2
+    100116: l 3
+    100118: Wood_CHair
+    400000: //RootNode
+    400002: Component_1
+    400004: ID101
+    400006: ID101 1
+    400008: ID101 2
+    400010: ID101 3
+    400012: ID111
+    400014: ID111 1
+    400016: ID111 2
+    400018: ID111 3
+    400020: ID141
+    400022: ID151
+    400024: ID161
+    400026: ID181
+    400028: ID196
+    400030: ID206
+    400032: ID21
+    400034: ID21 1
+    400036: ID21 2
+    400038: ID21 3
+    400040: ID221
+    400042: ID31
+    400044: ID31 1
+    400046: ID31 2
+    400048: ID31 3
+    400050: ID41
+    400052: ID41 1
+    400054: ID41 2
+    400056: ID41 3
+    400058: ID51
+    400060: ID51 1
+    400062: ID51 2
+    400064: ID51 3
+    400066: ID61
+    400068: ID61 1
+    400070: ID61 2
+    400072: ID61 3
+    400074: ID71
+    400076: ID71 1
+    400078: ID71 2
+    400080: ID71 3
+    400082: ID81
+    400084: ID81 1
+    400086: ID81 2
+    400088: ID81 3
+    400090: ID91
+    400092: ID91 1
+    400094: ID91 2
+    400096: ID91 3
+    400098: instance_0
+    400100: instance_1
+    400102: instance_2
+    400104: instance_3
+    400106: instance_4
+    400108: instance_5
+    400110: l
+    400112: l 1
+    400114: l 2
+    400116: l 3
+    400118: Wood_CHair
+    2300000: Component_1
+    2300002: ID101
+    2300004: ID101 1
+    2300006: ID101 2
+    2300008: ID101 3
+    2300010: ID111
+    2300012: ID111 1
+    2300014: ID111 2
+    2300016: ID111 3
+    2300018: ID141
+    2300020: ID151
+    2300022: ID161
+    2300024: ID181
+    2300026: ID196
+    2300028: ID206
+    2300030: ID21
+    2300032: ID21 1
+    2300034: ID21 2
+    2300036: ID21 3
+    2300038: ID221
+    2300040: ID31
+    2300042: ID31 1
+    2300044: ID31 2
+    2300046: ID31 3
+    2300048: ID41
+    2300050: ID41 1
+    2300052: ID41 2
+    2300054: ID41 3
+    2300056: ID51
+    2300058: ID51 1
+    2300060: ID51 2
+    2300062: ID51 3
+    2300064: ID61
+    2300066: ID61 1
+    2300068: ID61 2
+    2300070: ID61 3
+    2300072: ID71
+    2300074: ID71 1
+    2300076: ID71 2
+    2300078: ID71 3
+    2300080: ID81
+    2300082: ID81 1
+    2300084: ID81 2
+    2300086: ID81 3
+    2300088: ID91
+    2300090: ID91 1
+    2300092: ID91 2
+    2300094: ID91 3
+    2300096: l
+    2300098: l 1
+    2300100: l 2
+    2300102: l 3
+    2300104: Wood_CHair
+    3300000: Component_1
+    3300002: ID101
+    3300004: ID101 1
+    3300006: ID101 2
+    3300008: ID101 3
+    3300010: ID111
+    3300012: ID111 1
+    3300014: ID111 2
+    3300016: ID111 3
+    3300018: ID141
+    3300020: ID151
+    3300022: ID161
+    3300024: ID181
+    3300026: ID196
+    3300028: ID206
+    3300030: ID21
+    3300032: ID21 1
+    3300034: ID21 2
+    3300036: ID21 3
+    3300038: ID221
+    3300040: ID31
+    3300042: ID31 1
+    3300044: ID31 2
+    3300046: ID31 3
+    3300048: ID41
+    3300050: ID41 1
+    3300052: ID41 2
+    3300054: ID41 3
+    3300056: ID51
+    3300058: ID51 1
+    3300060: ID51 2
+    3300062: ID51 3
+    3300064: ID61
+    3300066: ID61 1
+    3300068: ID61 2
+    3300070: ID61 3
+    3300072: ID71
+    3300074: ID71 1
+    3300076: ID71 2
+    3300078: ID71 3
+    3300080: ID81
+    3300082: ID81 1
+    3300084: ID81 2
+    3300086: ID81 3
+    3300088: ID91
+    3300090: ID91 1
+    3300092: ID91 2
+    3300094: ID91 3
+    3300096: l
+    3300098: l 1
+    3300100: l 2
+    3300102: l 3
+    3300104: Wood_CHair
+    4300000: Wood_CHair
+    4300002: ID181
+    4300004: ID196
+    4300006: ID206
+    4300008: ID221
+    4300010: l
+    4300012: ID21
+    4300014: ID31
+    4300016: ID41
+    4300018: ID51
+    4300020: ID61
+    4300022: ID71
+    4300024: ID81
+    4300026: ID91
+    4300028: ID101
+    4300030: ID111
+    4300032: Component_1
+    4300034: ID141
+    4300036: ID151
+    4300038: ID161
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .0199999996
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
