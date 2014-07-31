@@ -11,19 +11,18 @@ public class SubtitleManager : MonoBehaviour {
 	{
 		get
 		{
-			/*
 			if (_instance == null)
 			{
-				GameObject go = new GameObject("SubtitleManager");
-				GameObject displayGO = new GameObject("Subtitles");
-				displayGO.AddComponent<SubtitleDisplay>();
-				displayGO.transform.localPosition = new Vector3(0.5f, 0.02f, 0);
-				displayGO.transform.parent = go.transform;
-				_instance = go.AddComponent<SubtitleManager>();
+				Debug.Log ("SubtitleManager not found. Instantiating from Resources directory.");
+				GameObject go = Instantiate(Resources.Load ("Prefabs/SubtitleManager")) as GameObject;
+				GameObject systems = GameObject.Find ("Game Systems");
+				go.transform.parent = systems.transform;
+				_instance = go.GetComponent<SubtitleManager>();
 			}
-			*/
+
 			return _instance;
 		}
+
 	}
 
 	// Use this for initialization
@@ -39,6 +38,20 @@ public class SubtitleManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void Play () {
+		if (display != null)
+		{
+			display.StartSubtitles();
+		}
+	}
+
+	public void Stop () {
+		if (display != null)
+		{
+			display.ClearSubtitles();
+		}
 	}
 
 	public void AddSubtitle(string text, float length)

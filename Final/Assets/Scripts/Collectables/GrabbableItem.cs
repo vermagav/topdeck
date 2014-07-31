@@ -8,7 +8,7 @@ public class GrabbableItem : MonoBehaviour {
 	float hoverDistance = 15;
 
 	float timeToFreezeRotationOnGrab = 1f;
-	Vector3 rotationOnGrab;
+	//Vector3 rotationOnGrab;
 
 	ObjectHighlights feedbackHighlights;
 	bool feedbackPresent { get { return feedbackHighlights != null; } }
@@ -83,7 +83,7 @@ public class GrabbableItem : MonoBehaviour {
 		//rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 		rigidbody.isKinematic = true;
 		transform.localEulerAngles = new Vector3(0, 0, 0);
-		rotationOnGrab = transform.localEulerAngles;
+		//rotationOnGrab = transform.localEulerAngles;
 		rigidbody.isKinematic = false;
 		FreezeRotation();
 		if (joint != null)

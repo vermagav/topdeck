@@ -52,10 +52,19 @@ public class SubtitleDisplay : MonoBehaviour {
 		}
 	}
 
+	public void StartSubtitles()
+	{
+		if (subtitles.Count != 0 && !subtitlesDisplayed)
+			UpdateDisplay(subtitles[0]);
+	}
+
 	public void AddSubtitle(string text, float length)
 	{
 		AddSubtitle (text, length, BlankColor);
 	}
+	
+	//http://answers.unity3d.com/questions/45007/c-optional-parameters.html
+	//does not work with colors, apparently
 
 	public void AddSubtitle(string text, float length, Color color)
 	{
@@ -75,10 +84,6 @@ public class SubtitleDisplay : MonoBehaviour {
 	void EnqueueSubtitle(Subtitle sub)
 	{
 		subtitles.Add(sub);
-		if (!subtitlesDisplayed)
-		{
-			UpdateDisplay(subtitles[0]);
-		}
 	}
 
 	void UpdateDisplay(Subtitle sub)
