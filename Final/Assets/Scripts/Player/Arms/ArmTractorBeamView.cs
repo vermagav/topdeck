@@ -7,6 +7,7 @@ public class ArmTractorBeamView : BaseRobotHand {
 	public LightningBolt lightning;
 	ParticleRenderer particleRenderer;
 	public Transform defaultArc;
+	float lightningScale = 0;
 
 	[Range (0, 1)]
 	public float pulseAmount;
@@ -33,11 +34,20 @@ public class ArmTractorBeamView : BaseRobotHand {
 		{
 			if (lightning.target.CompareTag("Collectable"))
 			{
-				particleRenderer.maxParticleSize = 0.01f + (0.02f * pulseAmount);
+				lightningScale = 0.01f + (0.02f * pulseAmount);
 			}
 			else
 			{
-				particleRenderer.maxParticleSize = 0.01f * pulseAmount;
+				lightningScale = 0.01f * pulseAmount;
+			}
+			particleRenderer.maxParticleSize = lightningScale;
+			if (audio)
+			{
+				audio.volume = lightningScale / 0.03f;
+				if (audio.volume == 0)
+					audio.Stop();
+				else
+					audio.Play();
 			}
 		}
 
@@ -48,6 +58,8 @@ public class ArmTractorBeamView : BaseRobotHand {
 		if (lightning)
 		{
 			lightning.target = target;
+			if (audio)
+				audio.pitch = 0.7f;
 		}
 	}
 
@@ -56,9 +68,14 @@ public class ArmTractorBeamView : BaseRobotHand {
 		if (lightning)
 		{
 			if (defaultArc)
+			{
 				lightning.target = defaultArc;
+				if (audio)
+					audio.pitch = 1;
+			}
 			else
 				lightning.target = alternativeTarget;
 		}
 	}
+
 }
