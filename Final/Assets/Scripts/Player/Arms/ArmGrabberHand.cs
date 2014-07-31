@@ -17,8 +17,9 @@ public class ArmGrabberHand : BaseRobotHand {
 
 	// Use this for initialization
 	void Start () {
-		grabRange = GetComponent<SphereCollider>();
-		grabRange.isTrigger = true;
+		SendMessage("SetTarget", grabPoint.transform, SendMessageOptions.DontRequireReceiver);
+		//grabRange = GetComponent<SphereCollider>();
+		//grabRange.isTrigger = true;
 	}
 	
 	// Update is called once per frame
@@ -41,6 +42,8 @@ public class ArmGrabberHand : BaseRobotHand {
 					currentCollectableInRange.SetOutlineFeedback(false);
 				currentCollectableInRange = item;
 				currentCollectableInRange.SetOutlineFeedback(true);
+				//this is for the view to use, potentially
+				SendMessage("SetTarget", currentCollectableInRange.transform, SendMessageOptions.DontRequireReceiver);
 			}
 		}
 	}
@@ -54,6 +57,8 @@ public class ArmGrabberHand : BaseRobotHand {
 			if (item == currentCollectableInRange)
 			{
 				currentCollectableInRange.SetOutlineFeedback(false);
+				if (item != itemHeld)
+					SendMessage("SetTarget", grabPoint.transform, SendMessageOptions.DontRequireReceiver);
 				currentCollectableInRange = null;
 			}
 		}
@@ -67,6 +72,7 @@ public class ArmGrabberHand : BaseRobotHand {
 			if (itemHeld != null)
 			{
 				itemHeld.ReleaseItem();
+				SendMessage("SetTarget", grabPoint.transform, SendMessageOptions.DontRequireReceiver);
 				itemHeld = null;
 			}
 			grabPoint.SetActive (false);
