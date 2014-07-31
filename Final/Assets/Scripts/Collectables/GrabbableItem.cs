@@ -22,7 +22,8 @@ public class GrabbableItem : MonoBehaviour {
 
 	public void SetGrabbable(bool flag) {
 		isGrabbable = flag;
-		Debug.Log ("Box set to not grabbable");
+		if (!isGrabbable)
+			Debug.Log ("Box set to not grabbable");
 	}
 
 	// Use this for initialization
