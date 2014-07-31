@@ -37,7 +37,10 @@ public class ArmGrabberHand : BaseRobotHand {
 
 			if (item != currentCollectableInRange && item != null)
 			{
+				if (currentCollectableInRange != null)
+					currentCollectableInRange.SetOutlineFeedback(false);
 				currentCollectableInRange = item;
+				currentCollectableInRange.SetOutlineFeedback(true);
 			}
 		}
 	}
@@ -50,6 +53,7 @@ public class ArmGrabberHand : BaseRobotHand {
 
 			if (item == currentCollectableInRange)
 			{
+				currentCollectableInRange.SetOutlineFeedback(false);
 				currentCollectableInRange = null;
 			}
 		}
@@ -70,7 +74,7 @@ public class ArmGrabberHand : BaseRobotHand {
 		else if (axis > axisClosingThreshold) //hand is closed
 		{
 			isOpen = false;
-			if (currentCollectableInRange != null)
+			if (itemHeld == null && currentCollectableInRange != null)
 			{
 				grabPoint.SetActive(true);
 
