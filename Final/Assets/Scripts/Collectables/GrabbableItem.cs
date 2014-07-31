@@ -75,6 +75,7 @@ public class GrabbableItem : MonoBehaviour {
 			Debug.Log ("Could not grab!");
 			return;
 		}
+		//Debug.Log ("Item Grabbed.");
 
 		//TODO: Objects should collide with player instead of passing through
 		//gameObject.layer = LayerMask.NameToLayer("Player");
@@ -86,8 +87,14 @@ public class GrabbableItem : MonoBehaviour {
 		//rotationOnGrab = transform.localEulerAngles;
 		rigidbody.isKinematic = false;
 		FreezeRotation();
+		//this is a workaround for bug in which multiple joints are being created, which should not happen
+		//TODO: Figure out why this is happening
 		if (joint != null)
+		{
+			joint.connectedBody = null;
 			Destroy (joint);
+		}
+
 		joint = gameObject.AddComponent<FixedJoint>();
 		joint.connectedBody = grabPoint;
 		if (feedbackPresent)
@@ -102,6 +109,7 @@ public class GrabbableItem : MonoBehaviour {
 
 	public void ReleaseItem()
 	{
+		//Debug.Log ("Item Released.");
 		gameObject.layer = LayerMask.NameToLayer("Default");
 		rigidbody.interpolation = RigidbodyInterpolation.None;
 		//rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
@@ -158,6 +166,17 @@ public class GrabbableItem : MonoBehaviour {
 		//rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 		rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 		movementDampened = false;
+	}
+
+	public void SetOutlineFeedback(bool state)
+	{
+		if (feedbackPresent)
+		{
+			if (state)
+				feedbackHighlights.SetOutline(true, 1);
+			else
+				feedbackHighlights.SetOutline(false);
+		}
 	}
 
 }

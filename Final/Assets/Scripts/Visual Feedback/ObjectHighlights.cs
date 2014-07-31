@@ -77,6 +77,20 @@ public class ObjectHighlights : MonoBehaviour {
 		RefreshMaterial();
 	}
 
+	public void SetOutline(bool state, float outlineWidth = 1)
+	{
+		//this is only for objects that have not been picked up yet
+		if (objectState == State.Highlight)
+			return;
+
+		if (state)
+		{
+			renderer.material.SetColor("_OutlineColor", highlightColor);
+		}
+		else
+			renderer.material.SetColor("_OutlineColor", Color.black);
+	}
+
 	void RefreshMaterial() {
 		if (objectState == State.Highlight)
 		{
