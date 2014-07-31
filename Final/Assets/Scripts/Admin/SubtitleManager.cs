@@ -11,6 +11,17 @@ public class SubtitleManager : MonoBehaviour {
 	{
 		get
 		{
+			/*
+			if (_instance == null)
+			{
+				GameObject go = new GameObject("SubtitleManager");
+				GameObject displayGO = new GameObject("Subtitles");
+				displayGO.AddComponent<SubtitleDisplay>();
+				displayGO.transform.localPosition = new Vector3(0.5f, 0.02f, 0);
+				displayGO.transform.parent = go.transform;
+				_instance = go.AddComponent<SubtitleManager>();
+			}
+			*/
 			return _instance;
 		}
 	}
@@ -32,11 +43,13 @@ public class SubtitleManager : MonoBehaviour {
 
 	public void AddSubtitle(string text, float length)
 	{
-		display.AddSubtitle(text, length);
+		if (display != null)
+			display.AddSubtitle(text, length);
 	}
 
 	public void AddSubtitle(string text, float length, Color color)
 	{
-		display.AddSubtitle(text, length, color);
+		if (display != null)
+			display.AddSubtitle(text, length, color);
 	}
 }
