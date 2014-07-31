@@ -1,0 +1,125 @@
+fileFormatVersion: 2
+guid: edfa9be18f6886049a999455ba4fc92e
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: group_0
+    100004: group_1
+    100006: ID100
+    100008: ID108
+    100010: ID116
+    100012: ID122
+    100014: ID126
+    100016: ID130
+    100018: ID23
+    100020: ID31
+    100022: ID39
+    100024: ID45
+    100026: ID58
+    100028: ID66
+    100030: ID74
+    100032: ID78
+    100034: instance_0
+    100036: Propane_Tank
+    400000: //RootNode
+    400002: group_0
+    400004: group_1
+    400006: ID100
+    400008: ID108
+    400010: ID116
+    400012: ID122
+    400014: ID126
+    400016: ID130
+    400018: ID23
+    400020: ID31
+    400022: ID39
+    400024: ID45
+    400026: ID58
+    400028: ID66
+    400030: ID74
+    400032: ID78
+    400034: instance_0
+    400036: Propane_Tank
+    2300000: group_0
+    2300002: group_1
+    2300004: ID100
+    2300006: ID108
+    2300008: ID23
+    2300010: ID31
+    2300012: ID58
+    2300014: ID66
+    2300016: Propane_Tank
+    3300000: group_0
+    3300002: group_1
+    3300004: ID100
+    3300006: ID108
+    3300008: ID23
+    3300010: ID31
+    3300012: ID58
+    3300014: ID66
+    3300016: Propane_Tank
+    4300000: Propane_Tank
+    4300002: ID100
+    4300004: ID108
+    4300006: group_0
+    4300008: ID23
+    4300010: ID31
+    4300012: group_1
+    4300014: ID58
+    4300016: ID66
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .150000006
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
