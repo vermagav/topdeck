@@ -143,7 +143,7 @@ public class Agent : MonoBehaviour {
 			MoveAgent( player.transform.position );
 			if ( Vector3.Distance(this.transform.position, player.transform.position) <= caughtPlayerDistanceThreshold ) {
 				if(CanAttack()) {
-					player.rigidbody.AddForce((pushEntrance.position - player.transform.position) * 60, ForceMode.Impulse);
+					player.rigidbody.AddForce((pushEntrance.position - player.transform.position) * 40, ForceMode.Impulse);
 					Transition(FSM.Trigger.EnemyDisappeared);
 					return;
 				}
