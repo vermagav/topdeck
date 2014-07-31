@@ -20,8 +20,9 @@ public class GrabbableItem : MonoBehaviour {
 
 	private bool isGrabbale = true;
 
-	void SetGrabbable(bool flag) {
+	public void SetGrabbable(bool flag) {
 		isGrabbale = flag;
+		Debug.Log ("Box set to not grabbable");
 	}
 
 	// Use this for initialization
@@ -71,6 +72,7 @@ public class GrabbableItem : MonoBehaviour {
 	public void GrabItem(Rigidbody grabPoint)
 	{
 		if(!isGrabbale) {
+			Debug.Log ("Could not grab!");
 			return;
 		}
 
