@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour {
 			{
 				forceApplied = Vector3.Scale((targetVelocity - rigidbody.velocity), XZplane);
 
-				if(forceApplied.magnitude < 0.1f)
+				if(forceApplied.magnitude < 0.1f) //smooths out jitter when the analog stick is at rest
 					return;
 
 				forceApplied = forceApplied / forceApplied.magnitude * maxForce * movementRate;
